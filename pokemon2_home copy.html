@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{border: 1px solid red;}
+    /* body{
+     justify-content: ;
+    } */
+
+  </style>
+</head>
+<body>
+  <div id = 'root'></div>
+
+
+  <script>
+
+    const body = document.body;
+    // console.dir(body)
+
+    const root = document.getElementById('root');
+    // console.log(root);
+
+    // const container = document.createElement('main');
+    // root.appendChild(container);  
+
+    const left = document.createElement('div');
+    root.appendChild(left);
+
+    const warrap = document.createElement('section');
+    root.appendChild(warrap);  //warrap
+    // warrap.id = "newWarrap";
+
+
+    const right = document.createElement('div');
+    root.appendChild(right);
+
+    const slider = document.createElement('div');
+    warrap.appendChild(slider); //card 묶음 
+    slider.id = "newSlider";
+    // 유튜브에 rocksweb슬라이더 자바스크립트 29 슬라이더 쇼 보고 참고하기 
+    // 자식 클로닝하는것도 있음. 
+
+
+
+    // body > div >  section > div(slider), div(left), div(right)
+
+    
+
+
+
+
+    const domStyling = {
+      reset : function(){
+          body.style.margin = "0";
+          body.style.padding = "0";
+          body.style.boxSizing = "border-box";
+        },
+
+      size : function(element, widthValue, heihgtValue){
+        element.style.width = widthValue;
+        element.style.height = heihgtValue;
+      },
+
+      marginSet : function(element, rightValue){
+        element.style.marginRight = rightValue;
+        
+      },
+
+
+      overFlow : function(element, overFlowValue){
+        element.style.overflow= overFlowValue;
+        
+      },
+
+      bgColorSet : function(element, bgColor){
+        element.style.backgroundColor = bgColor;
+      },
+
+      // colorSet : function(element, colorValue){
+      //   element.style.color = colorValue;
+      // },
+
+      flex: function(element, displayValue ="flex", direction="row", justifyContentValue, alignItemsValue){
+        element.style.display = displayValue;
+        element.style.flexDirection = direction;
+        element.style.justifyContent = justifyContentValue;
+        element.style.alignItems = alignItemsValue;
+        
+      },
+
+      textSet :function(element, textsyle, fontsize){
+        element.style.textAlign = textsyle;
+        element.style.fontSize = fontsize;
+      },
+
+      positionSet :function(element, positionValue){
+        element.style.position = positionValue;
+      }
+    }
+    
+    domStyling.reset();
+    domStyling.size(body, "100vw", "100vh");
+    domStyling.flex(body, "flex", "row", "center", "center");
+    // body 스타일
+
+
+    domStyling.size(root,"100vw", "100vh");
+    domStyling.flex(root, "flex", "row", "space-around", "center");
+    // root(div) 스타일
+
+    // domStyling.size(container, "100vw");
+    // domStyling.overFlow(container, "hidden");
+    // domStyling.flex(container, "flex", "row", "center", "center");
+    // container(main) 스타일
+
+    domStyling.size(warrap, "1100px");
+    domStyling.flex(warrap, "flex", "row", "flex-start", "center");
+    // domStyling.overFlow(warrap, "hidden");
+    // warrap(section) 스타일
+
+    domStyling.size(left, "100px", "100px");
+    // 피그마 마우스 오른쪽, 플러그인, iconify에 화살표 이미지들 있음. 백그라운드로 넣기 
+
+    domStyling.size(right, "100px", "100px");
+
+
+
+    domStyling.size(slider, "7900px", "500px");
+    domStyling.flex(slider, "flex", "row", "flex-start", "center");
+    // flex-start로 해놔야 카드가 1번부터 쭉 나옴 
+    domStyling.overFlow(slider, "hidden");
+    domStyling.positionSet(slider, "relative");
+    // translateX -왼쪽으로 가기, +는  오른쪽으로 가기, slidercount는 queryall로 불러와서 배열로 값 구하고 그 갯수 쓰기 
+    
+
+    // console.dir(container.style);
+
+    
+    const slides = document.querySelector('#newSlider');
+    // console.log(slides);
+  
+    
+
+
+  function set (j){
+
+    
+    // let num = 900;
+
+    // for(let j = 0; j<num.length; j++){
+
+      
+      const _BASIC_URL = `https://pokeapi.co/api/v2/pokemon-species/${j}/`;
+      
+      // console.log(_BASIC_URL);
+    
+    // const _BASIC_URL = `https://pokeapi.co/api/v2/pokemon-species/${i}/`;
+    // `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10`;
+      const request = new XMLHttpRequest();
+      request.open("GET", _BASIC_URL);
+      request.responseType = "json";
+      request.send();
+      request.addEventListener('load', () => {
+        const _POKEMON_API = request.response;
+        console.log(_POKEMON_API);
+        // 상수 _POKEMON_API 데이터가 사장놈이 가져온 데이터이다.
+        const pokeName = _POKEMON_API.names[2].name;
+        console.log(pokeName);
+
+        const arrTest = [];
+        for(let i =0; i<_POKEMON_API.flavor_text_entries.length; i++){
+          if(_POKEMON_API.flavor_text_entries[i].language.name ==="ko"){
+            console.log(_POKEMON_API.flavor_text_entries[i].flavor_text);
+            arrTest[i] = _POKEMON_API.flavor_text_entries[i].flavor_text;
+            
+          };
+
+          
+        };
+        // for of,(flavor_text_entries) break걸어주면 한번만 나옴. 
+        // translateX -왼쪽으로 가기, +는  오른쪽으로 가기
+
+        console.log(arrTest);
+        // const flavor = _POKEMON_API.flavor_text_entries.flavor_text;
+        // console.log(flavor);
+        
+        // const colorSet = ["#BE8A84", "#AC7C72", "#A4A174", "#636756"];
+        // for(let i = 0; i<count.length; i++){
+          let card = document.createElement('div');
+          slider.appendChild(card);
+          domStyling.size(card, "400px", "500px");
+          domStyling.marginSet(card, "100px");
+          domStyling.bgColorSet(card, "rgb(248, 244, 244)");
+          
+          const slidCard = document.querySelectorAll('#newSlider>div');
+          console.log(slidCard);
+
+          // card[i];
+
+          // domStyling.size(card, "500px", "400px");
+
+          let pokeImg = document.createElement('div');
+          card.appendChild(pokeImg);
+          // pokeImg[i];
+          domStyling.size(pokeImg,"300px", "300px");
+          domStyling.flex(pokeImg, "flex", "column", "center", "center");
+        
+          
+          // 이미지 담은 div
+
+
+          let img = document.createElement('img');
+          domStyling.overFlow(pokeImg, "hidden");
+          pokeImg.appendChild(img);
+          console.log(img);
+          img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${j}.png`
+          domStyling.size(img, "250px", "250px");
+          domStyling.bgColorSet(img, "#FCCB4F");
+          // img.style.objectFit = "cover";
+          // 포켓몬 이미지 불러옴
+          // 이미지 div에 딱 맞게 넣어줌 
+          
+          let setH1 = document.createElement('h1');
+          pokeImg.appendChild(setH1);
+          setH1.textContent = "No." + [j];
+          // domStyling.bgColorSet(setH1, "#FFA101");
+          const h1Text = setH1.textContent;
+          setH1.style.color = "#642A02";
+          // domStyling.colorSet(setH1, "1C335F");
+          // domStyling.size(setH1)
+          // setH1[i];
+          // count[i].name; 
+          // setH1.textContent = count[i].name;
+
+          // sliderDiv > card > pokeImg > h1
+
+          let setP = document.createElement('p');
+          card.appendChild(setP);
+          setP.textContent = pokeName;
+          domStyling.textSet(setP, "center", "1.5rem");
+
+          // setP.textContent = flavor;
+          // setP[i];
+          // let koName = `https://pokeapi.co/api/v2/pokemon-species/${j}/`.name;
+          // console.dir(koName);
+
+          
+
+          let setSpan = document.createElement('span');
+            card.appendChild(setSpan);
+            setSpan.textContent = arrTest;
+            domStyling.size(setSpan, "350px", "200px");
+
+          
+          
+          
+          // setSpan[i];
+
+          // sliderDiv > card(div), setP(p), span   card와 p와 span은 형제
+
+          
+          // https://raw.githubuserco…r/official-artwork/1.png
+
+          
+        // }
+
+        
+
+      })
+
+  };
+  
+    for(let i = 1; i<21; i++){
+      set(i)
+    };
+    
+
+    
+    
+    
+  
+
+      
+
+
+  </script>
+
+
+</body>
+</html>
