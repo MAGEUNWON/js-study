@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+
+    const dom = [];
+    for(let i = 0; i < 5; i++){
+      dom.push(`<li>hello</li>`);
+    }
+
+    dom.unshift("<ul>");
+    dom.push("</ul>");
+
+    console.log(dom.join(''));
+    root.innerHTML = dom.join("");
+
+
+
+
+    // function tag(tagName){
+    //   return `<${tagName}>`;
+    // }
+    // let test= tag("ul");
+    // console.log(test);
+
+    // let liList = tag("li");
+    // console.log(liList);
+      
+
+    
+    // for(let i = 0; i<5; i++){
+      
+    // }
+
+    // root.innerHTML = test;
+    
+  </script>
+
+</body>
+</html>
