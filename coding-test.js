@@ -5,7 +5,7 @@
 
 const inputData = [];
 for(let i = 1; i<=3; i++){
-  let random = Math.floor(Math.random() *(20-1+1)) +1;
+  let random = Math.floor(Math.random() *20) +1;
   //1부터 20까지의 수 중 난수 생성해라, random 범위지정은 (최대값 -최소값 + 최소값) +최소값
   if (inputData.indexOf(random)===-1){
     // indexOf는 지정된 요소 첫번째 인덱스를 반환하고 존재하지 않으면 -1 반환. 음수값 나오는걸로 중복을 검사할 수 있음 
@@ -51,12 +51,15 @@ if(formula(x, y, z)<10){
 
 function median(arr){
   let center = parseInt(arr.length / 2);
+  // 배열의 길이를 2로 나눈값이 문자열이면 숫자로 바꿔라 
   // console.log(center);
   
   if(arr.length % 2 === 1){
+    // 배열의 길이를 2로 나눈 나머지값이 1일 때 (=홀수 일 때)
     return arr[center];
   }else{
     return (arr[center-1]+arr[center]/2)
+    // 배열의 길이의 2로 나눈 값과  나눈 값의 -1을 더해서 평균을 내라, 배열의 중간 두 수의 평균 (=짝수 일 때) 
   }
 }
 console.log(median(inputData));
