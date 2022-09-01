@@ -7,13 +7,12 @@
   <title>Document</title>
   <style>
     *{border: 1px solid red;}
-    /* body{
-     justify-content: ;
-    } */
+    
 
   </style>
 </head>
 <body>
+
   <div id = 'root'></div>
 
 
@@ -144,10 +143,15 @@
     // console.dir(container.style);
 
     
-    const slides = document.querySelector('#newSlider');
+    // const slides = document.querySelector('#newSlider');
     // console.log(slides);
-  
     
+
+    
+    
+    // left.addEventListener('click', function(){
+            
+          // })
 
 
   function set (j){
@@ -203,9 +207,8 @@
           domStyling.size(card, "400px", "500px");
           domStyling.marginSet(card, "100px");
           domStyling.bgColorSet(card, "rgb(248, 244, 244)");
-          
-          const slidCard = document.querySelectorAll('#newSlider>div');
-          // console.log(slidCard);
+
+        
 
           // card[i];
 
@@ -271,6 +274,7 @@
               // console.log(entries.flavor_text);
               setSpan.textContent= entries.flavor_text;
               break;
+              // for of,(flavor_text_entries) break걸어주면 한번만 나옴.
             }
           }
           
@@ -279,12 +283,24 @@
           domStyling.size(setSpan, "350px", "200px");
 
 
+
+          const slides = document.querySelector('#newSlider');
+          console.log(slides);
           
-          // console.log(_POKEMON_API.order);
-        
+          const slidCard = document.querySelectorAll('#newSlider>div');
+          console.log(slidCard);
+
+          const slidPrev = document.querySelector('#root>div:nth-child(1)');
+          console.log(slidPrev);
+
+          const slidNext = document.querySelector('#root>div:nth-child(3)');
+          console.log(slidNext);
+
+          
+
+          const slidWidth = 500;
 
 
-          // for of,(flavor_text_entries) break걸어주면 한번만 나옴. 
           // translateX -왼쪽으로 가기, +는  오른쪽으로 가기
 
           
@@ -295,7 +311,7 @@
           // sliderDiv > card(div), setP(p), span   card와 p와 span은 형제
 
           
-          // https://raw.githubuserco…r/official-artwork/1.png
+          
 
           
         // }
@@ -312,7 +328,7 @@
     };
     
 
-    
+  
     
     
   
