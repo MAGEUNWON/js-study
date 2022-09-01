@@ -125,10 +125,13 @@
 
     domStyling.size(left, "100px", "100px");
     // 피그마 마우스 오른쪽, 플러그인, iconify에 화살표 이미지들 있음. 백그라운드로 넣기 
+    left.style.background = "url(./Group.png)"
+    left.style.objectFit = "cover";
+    
 
     domStyling.size(right, "100px", "100px");
-
-
+    right.style.background = "url(./Group2.png)"
+    right.style.objectFit = "cover";
 
     domStyling.size(slider, "7900px", "500px");
     domStyling.flex(slider, "flex", "row", "flex-start", "center");
@@ -156,11 +159,6 @@
 
       
       const _BASIC_URL = `https://pokeapi.co/api/v2/pokemon-species/${j}/`;
-      
-      // console.log(_BASIC_URL);
-    
-    // const _BASIC_URL = `https://pokeapi.co/api/v2/pokemon-species/${i}/`;
-    // `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=10`;
       const request = new XMLHttpRequest();
       request.open("GET", _BASIC_URL);
       request.responseType = "json";
@@ -172,20 +170,29 @@
         const pokeName = _POKEMON_API.names[2].name;
         console.log(pokeName);
 
-        const arrTest = [];
-        for(let i =0; i<_POKEMON_API.flavor_text_entries.length; i++){
-          if(_POKEMON_API.flavor_text_entries[i].language.name ==="ko"){
-            console.log(_POKEMON_API.flavor_text_entries[i].flavor_text);
-            arrTest[i] = _POKEMON_API.flavor_text_entries[i].flavor_text;
+        
+
+        // for(let entries of _POKEMON_API.flavor_text_entries){
+        //   console.log(entries);
+        //   if(entries.language.name === "ko"){
+        //     console.log(entries.flavor_text);
+        //     arrTest[j].t = entries.flavor_text;
+        //     break;
+        //   }
+        // }
+
+        // for(let i =0; i<_POKEMON_API.flavor_text_entries.length; i++){
+        //   if(_POKEMON_API.flavor_text_entries[i].language.name ==="ko"){
+        //     console.log(_POKEMON_API.flavor_text_entries[i].flavor_text);
+        //     arrTest[i] = _POKEMON_API.flavor_text_entries[i].flavor_text;
             
-          };
+        //   };
 
           
-        };
-        // for of,(flavor_text_entries) break걸어주면 한번만 나옴. 
-        // translateX -왼쪽으로 가기, +는  오른쪽으로 가기
+        // };
 
-        console.log(arrTest);
+        
+      
         // const flavor = _POKEMON_API.flavor_text_entries.flavor_text;
         // console.log(flavor);
         
@@ -198,7 +205,7 @@
           domStyling.bgColorSet(card, "rgb(248, 244, 244)");
           
           const slidCard = document.querySelectorAll('#newSlider>div');
-          console.log(slidCard);
+          // console.log(slidCard);
 
           // card[i];
 
@@ -221,15 +228,21 @@
           img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${j}.png`
           domStyling.size(img, "250px", "250px");
           domStyling.bgColorSet(img, "#FCCB4F");
-          // img.style.objectFit = "cover";
+          img.style.objectFit = "cover";
           // 포켓몬 이미지 불러옴
           // 이미지 div에 딱 맞게 넣어줌 
+
+          let orderValue = _POKEMON_API.order;
+          console.log(orderValue);
           
           let setH1 = document.createElement('h1');
           pokeImg.appendChild(setH1);
-          setH1.textContent = "No." + [j];
+          setH1.textContent = "No." + orderValue;
+          // setH1.textContent = "No." + [j];
           // domStyling.bgColorSet(setH1, "#FFA101");
           const h1Text = setH1.textContent;
+          console.log(h1Text);
+
           setH1.style.color = "#642A02";
           // domStyling.colorSet(setH1, "1C335F");
           // domStyling.size(setH1)
@@ -252,9 +265,27 @@
           
 
           let setSpan = document.createElement('span');
-            card.appendChild(setSpan);
-            setSpan.textContent = arrTest;
-            domStyling.size(setSpan, "350px", "200px");
+          for(let entries of _POKEMON_API.flavor_text_entries){
+            // console.log(entries);
+            if(entries.language.name === "ko"){
+              // console.log(entries.flavor_text);
+              setSpan.textContent= entries.flavor_text;
+              break;
+            }
+          }
+          
+          card.appendChild(setSpan);
+          // setSpan.textContent = arrTest;
+          domStyling.size(setSpan, "350px", "200px");
+
+
+          
+          // console.log(_POKEMON_API.order);
+        
+
+
+          // for of,(flavor_text_entries) break걸어주면 한번만 나옴. 
+          // translateX -왼쪽으로 가기, +는  오른쪽으로 가기
 
           
           
@@ -274,9 +305,10 @@
       })
 
   };
-  
-    for(let i = 1; i<21; i++){
-      set(i)
+    let count = 0;
+    for(let i = 0; i<20; i++){
+      count++
+      set(count);
     };
     
 
