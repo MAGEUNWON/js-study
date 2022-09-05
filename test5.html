@@ -17,24 +17,35 @@
 </head>
 <body>
   <div id = "root">
-    <section id = "target"></section>
+    <!-- <section id = "target"></section> -->
+    <button id = "target">click</button>
+    <div id = "dropDown"></div>
   </div>
 
   <script>
 
     const targetSection = document.getElementById("target");
+    // let size = 0;
+    // targetSection.style.width = size+"px";
+    // targetSection.style.height = `${size}px`;
+    // targetSection.style.backgroundColor = "cadetblue";
+
+    const dropDown = document.getElementById("dropDown");
     let size = 0;
-    targetSection.style.width = size+"px";
-    targetSection.style.height = `${size}px`;
-    targetSection.style.backgroundColor = "cadetblue";
+    dropDown.style.width = "100px";
+    dropDown.style.height = `${size}px`;
+    dropDown.style.backgroundColor = "cadetblue";
+
     let rotateValue = 0;
     targetSection.style.transform = `rotate(${rotateValue}deg`;
 
 
-    let timer = setInterval(function(){
+    
+    targetSection.addEventListener('click', function(){
+      let timer = setInterval(function(){
       size = size +1;
-      targetSection.style.width = size+"px";
-      targetSection.style.height = `${size}px`;
+      // dropDown.style.width = size+"px";
+      dropDown.style.height = `${size}px`;
 
       if(size === 500){
         clearInterval(timer);
@@ -42,7 +53,7 @@
 
         let rotateAnimation = setInterval(function(){
           rotateValue++;
-          targetSection.style.transform = `rotate(${rotateValue}deg)`;
+          dropDown.style.transform = `rotate(${rotateValue}deg)`;
           if(rotateValue === 360){
             clearInterval(rotateAnimation);
           }
@@ -50,7 +61,30 @@
         // 크기 멈추고나면 360도 회전 시작
       }
 
-    }, 32);
+      }, 32);
+    })
+
+
+    // let timer = setInterval(function(){
+    //   size = size +1;
+    //   // dropDown.style.width = size+"px";
+    //   dropDown.style.height = `${size}px`;
+
+    //   if(size === 500){
+    //     clearInterval(timer);
+    //     // size가 500 되면 크기 늘어나는거 멈춤 
+
+    //     let rotateAnimation = setInterval(function(){
+    //       rotateValue++;
+    //       dropDown.style.transform = `rotate(${rotateValue}deg)`;
+    //       if(rotateValue === 360){
+    //         clearInterval(rotateAnimation);
+    //       }
+    //     },16);
+    //     // 크기 멈추고나면 360도 회전 시작
+    //   }
+
+    // }, 32);
 
 
     // targetButton.addEventListener('click', function(){
