@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    #root{
+      width: 100vw;
+      height: 100vh;
+      background-color: #333;
+    }
+
+  </style>
+</head>
+<body>
+  <div id = "root">
+    <section id = "target"></section>
+  </div>
+
+  <script>
+
+    const targetSection = document.getElementById("target");
+    let size = 0;
+    targetSection.style.width = size+"px";
+    targetSection.style.height = `${size}px`;
+    targetSection.style.backgroundColor = "cadetblue";
+    let rotateValue = 0;
+    targetSection.style.transform = `rotate(${rotateValue}deg`;
+
+
+    let timer = setInterval(function(){
+      size = size +1;
+      targetSection.style.width = size+"px";
+      targetSection.style.height = `${size}px`;
+
+      if(size === 500){
+        clearInterval(timer);
+        // size가 500 되면 크기 늘어나는거 멈춤 
+
+        let rotateAnimation = setInterval(function(){
+          rotateValue++;
+          targetSection.style.transform = `rotate(${rotateValue}deg)`;
+          if(rotateValue === 360){
+            clearInterval(rotateAnimation);
+          }
+        },16);
+        // 크기 멈추고나면 360도 회전 시작
+      }
+
+    }, 32);
+
+
+    // targetButton.addEventListener('click', function(){
+    //   let dropDown = setInterval(function(){
+    //     constValue = constValue +1;
+    //     targetButton.style.width = "300px";
+    //     targetButton.style.height = "100px" + `${constValue}px`;
+    //     targetButton.style.backgroundColor = "orange";
+    //     if(constValue === 100){
+    //       clearInterval(dropDown);
+    //     }
+
+    //   },30);
+    // })
+    // click 이벤트로 위의 애니메이션 구현하려면 클릭을 500번 계속 해야 함. setInterval로 하면 알아서 구현되게 할 수 있음. 
+  </script>
+</body>
+</html>
