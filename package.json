@@ -1,0 +1,20 @@
+{
+  "name": "gogodan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gogodan.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MAGEUNWON/gogodan.git"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MAGEUNWON/gogodan/issues"
+  },
+  "homepage": "https://github.com/MAGEUNWON/gogodan#readme"
+}
