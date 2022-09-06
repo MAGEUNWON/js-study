@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const virtualElement = document.createDocumentFragment();
+    // document.createDocumentFragment() 함수를 사용. 다른 노드를 담는 임시 컨테이너 역할을 하는 특수노드. Dom트리처럼 동작하되 메모리상에서만 존재하는 빈 문서 템플릿임. Dom에 추가하더라도 DocumentFrament 자체는 추가 되지 않으면 노드의 내용만 추가 됨. Dom에 추가하면 DocumentFrament는 추가되는 위치로 이전되면, 생성한 메모리상의 위치에 더이상 존재하지 않음. 
+    // element처럼 appendChild()와 insertBefore() 등으로 조작할 수 있는 자손 객체를 가질 수 있음. 
+    // new DocumentFragment(); 생성자 함수로 만들 수도 있음. 
+    const names = ["피카츄", "라이츄", "파이리", "꼬부기", "버터풀"];
+    names.forEach((value)=>{
+      const section = document.createElement("section");
+      const textNode = document.createTextNode(value);
+      // createTextNode는 선택한 요소에 텍스트를 추가하는 것. value 내용을 텍스트로 추가해서 변수 textNode에 담음.
+      section.appendChild(textNode);
+      // section안에 textNode를 자식으로 추가해서 텍스트를 추가함. 
+      virtualElement.appendChild(section);
+    });
+    document.body.appendChild(virtualElement);
+
+  </script>
+</body>
+</html>
