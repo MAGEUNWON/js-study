@@ -117,11 +117,10 @@
     // domStyling.flex(container, "flex", "row", "center", "center");
     // container(main) 스타일
 
-    domStyling.size(warrap, "1200px");
+    domStyling.size(warrap, "1100px");
     domStyling.flex(warrap, "flex", "row", "flex-start", "center");
     domStyling.overFlow(warrap, "hidden");
     domStyling.positionSet(warrap, "relative");
-    // domStyling.overFlow(warrap, "hidden");
     // warrap(section) 스타일
 
     domStyling.size(left, "100px", "100px");
@@ -295,9 +294,9 @@
           console.log(slidCard);
           // 모든 슬라이드들
 
-          const slidCardFirst = document.querySelector('#newSlider>div:nth-child(1)');
-          slidCardFirst.style.marginLeft = "50px";
-          console.dir(slidCardFirst);
+          // const slidCardFirst = document.querySelector('#newSlider>div:nth-child(1)');
+          // slidCardFirst.style.marginLeft = "50px";
+          // console.dir(slidCardFirst);
           // 첫번째 카드 
 
           let currentIdx = 0;
@@ -328,17 +327,42 @@
             currentIdx = num;
           }
 
+        
+
+          // slidNext.addEventListener('click', function(){
+          //   slides.style.transition = "esae .5s";
+          //   if(currentIdx !== slidCount -3){
+          //     moveSlide(currentIdx -1);
+          //     count--
+          //   } else{
+          //     moveSlide(0);
+          //     count = 0;
+          //   }
+          // });
+
+          // slidPrev.addEventListener('click', function(){
+          //   if(currentIdx>0){
+          //     moveSlide(currentIdx +1);
+          //     count++
+          //   } 
+          // });
+        
+
           slidPrev.addEventListener('click', function(){
             if(currentIdx !== 0){
-              moveSlide(currentIdx -1);
+              moveSlide(currentIdx +1);
+              count++
             }
           });
 
           slidNext.addEventListener('click', function(){
-            if(currentIdx !== slidCount-1){
-              moveSlide(currentIdx + 1);
+            // if(currentIdx !== slidCount -1){
+              moveSlide(currentIdx -1);
+            // }
+            if(currentIdx === slidCount -1){
+              slidNext.setAttribute("disable", "true")
             }
-          })
+          });
             
 
           // translateX -왼쪽으로 가기, +는  오른쪽으로 가기
@@ -362,7 +386,7 @@
 
   };
     let count = 0;
-    for(let i = 0; i<20; i++){
+    for(let i = 0; i<10; i++){
       count++
       set(count);
     };
