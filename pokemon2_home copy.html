@@ -117,9 +117,10 @@
     // domStyling.flex(container, "flex", "row", "center", "center");
     // container(main) 스타일
 
-    domStyling.size(warrap, "1100px");
+    domStyling.size(warrap, "1200px");
     domStyling.flex(warrap, "flex", "row", "flex-start", "center");
     domStyling.overFlow(warrap, "hidden");
+    domStyling.positionSet(warrap, "relative");
     // domStyling.overFlow(warrap, "hidden");
     // warrap(section) 스타일
 
@@ -135,9 +136,10 @@
 
     domStyling.size(slider, "7900px", "500px");
     domStyling.flex(slider, "flex", "row", "flex-start", "center");
+    // domStyling.positionSet(slider, "absolute");
     // flex-start로 해놔야 카드가 1번부터 쭉 나옴 
-    domStyling.overFlow(slider, "hidden");
-    domStyling.positionSet(slider, "relative");
+    // domStyling.overFlow(slider, "hidden");
+
     // translateX -왼쪽으로 가기, +는  오른쪽으로 가기, slidercount는 queryall로 불러와서 배열로 값 구하고 그 갯수 쓰기 
     
 
@@ -205,7 +207,7 @@
         // for(let i = 0; i<count.length; i++){
           let card = document.createElement('div');
           slider.appendChild(card);
-          domStyling.size(card, "400px", "500px");
+          domStyling.size(card, "300px", "500px");
           domStyling.marginSet(card, "100px");
           domStyling.bgColorSet(card, "rgb(248, 244, 244)");
 
@@ -241,7 +243,7 @@
           
           let setH1 = document.createElement('h1');
           pokeImg.appendChild(setH1);
-          setH1.textContent = "No." + orderValue;
+          // setH1.textContent = "No." + orderValue;
           // setH1.textContent = "No." + [j];
           // domStyling.bgColorSet(setH1, "#FFA101");
           const h1Text = setH1.textContent;
@@ -293,6 +295,11 @@
           console.log(slidCard);
           // 모든 슬라이드들
 
+          const slidCardFirst = document.querySelector('#newSlider>div:nth-child(1)');
+          slidCardFirst.style.marginLeft = "50px";
+          console.dir(slidCardFirst);
+          // 첫번째 카드 
+
           let currentIdx = 0;
           // 현재 슬라이드 인덱스
 
@@ -314,18 +321,25 @@
           const slidMargin = 100;
           // 슬라이드간의 마진값
 
-          // slides.style.width = slidWidth * (slidCount +2) + "px";
+          slides.style.width = (slidWidth+slidMargin) * slidCount  + "px";
 
+          function moveSlide(num){
+            slides.style.transform = `translateX(${-num*-400}px)`;
+            currentIdx = num;
+          }
 
           slidPrev.addEventListener('click', function(){
-            slides.style.transform = "translateX(-400px)";
+            if(currentIdx !== 0){
+              moveSlide(currentIdx -1);
+            }
           });
 
           slidNext.addEventListener('click', function(){
-            // if(currentIdx !==-slidCount -1){
-              slides.style.transform = "translateX(400px)";
-            // }
+            if(currentIdx !== slidCount-1){
+              moveSlide(currentIdx + 1);
+            }
           })
+            
 
           // translateX -왼쪽으로 가기, +는  오른쪽으로 가기
 
