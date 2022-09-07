@@ -110,6 +110,10 @@
 
     domStyling.size(root,"100vw", "100vh");
     domStyling.flex(root, "flex", "row", "space-around", "center");
+    root.style.background = "url(./pokemon.jpg)"
+    root.style.backgroundRepeat = "no-repeat";
+    root.style.backgroundSize = "cover";
+    console.dir(root);
     // root(div) 스타일
 
     // domStyling.size(container, "100vw");
@@ -117,7 +121,7 @@
     // domStyling.flex(container, "flex", "row", "center", "center");
     // container(main) 스타일
 
-    domStyling.size(warrap, "1100px");
+    domStyling.size(warrap, "1100px", "500px");
     domStyling.flex(warrap, "flex", "row", "flex-start", "center");
     domStyling.overFlow(warrap, "hidden");
     domStyling.positionSet(warrap, "relative");
