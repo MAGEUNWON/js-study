@@ -11,7 +11,10 @@
       background-color: rgb(199, 19, 79);
     } */
     
-
+    @font-face {
+      font-family: bm;
+      src: url(./BMJUA_ttf.ttf);
+    }
   </style>
 </head>
 <body>
@@ -294,6 +297,7 @@
           domStyling.size(setSpan, "350px", "200px");
           setSpan.style.textAlign = "center";
           setSpan.style.color = "rgb(199, 19, 79)";
+          setSpan.style.fontFamily = "bm";
           setSpan.style.fontSize = "1.5rem";
           console.dir(setSpan);
 
@@ -336,6 +340,20 @@
           // 한개의 슬라이드 넓이(402)
         
 
+          slidPrev.addEventListener('click', function(){
+            if(currentIdx > 0){
+              position += slidWidth
+              slides.style.transform = `translateX(${position}px)`;
+              currentIdx -=1;
+              console.log(currentIdx);
+            } 
+              
+            // if(currentIdx===0){  
+            //     slidPrev.setAttribute("disabled", "true");
+            //   }
+
+          });
+
 
           slidNext.addEventListener('click', function(){
             slides.style.transition = "esae .5s";
@@ -343,23 +361,17 @@
               position -=slidWidth
               slides.style.transform = `translateX(${position}px)`;
               currentIdx += 1;
+              console.log(currentIdx);
+              
             } 
-              if(currentIdx===3){
+              if(currentIdx ===3){  
                 position = 0;
               }
           });
-
-          slidPrev.addEventListener('click', function(){
-            if(currentIdx > 0){
-              position += slidWidth
-              slides.style.transform = `translateX(${position}px)`;
-              currentIdx -=1;
-            }
-              // if(currentIdx===1){
-              //   slides.style.transform = `translateX(0)`;
-              // }
-          });
           
+          
+          
+        
         
 
           // slidPrev.addEventListener('click', function(){
@@ -398,7 +410,7 @@
 
   };
     let count = 0;
-    for(let i = 0; i<15; i++){
+    for(let i = 0; i<10; i++){
       count++
       set(count);
     };
