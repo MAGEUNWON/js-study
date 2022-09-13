@@ -5,7 +5,7 @@ a.map(function(value){
   return value;
 })
 
-function cmdMpa(arr){
+function cmdMap(arr){
   let temp = [];
   arr.forEach(function(value){
     temp.push(value);
@@ -13,7 +13,7 @@ function cmdMpa(arr){
   return temp;
 }
 
-function cmdMpaTwo(arr){
+function cmdMapTwo(arr){
   let temp = [];
   for(let i =0; i<arr.length; i ++){
     temp[temp.length] = arr[i];
