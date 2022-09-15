@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/MAGEUNWON/bulid/issues"
   },
-  "homepage": "https://github.com/MAGEUNWON/bulid#readme"
+  "homepage": "https://github.com/MAGEUNWON/bulid#readme",
+  "dependencies": {
+    "react": "^18.2.0"
+  }
 }
