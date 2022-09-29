@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #root{
+      width: 100vw;
+      height: 100vh;
+      background: #333;
+    }
+    #box{
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+    }
+    .flex-center{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div id = "root" class = "flex-center">
+    <div id = "box"></div>
+  </div>
+
+  <script>
+    const dom = {
+      root:document.getElementById('root'),
+      box:document.getElementById('box'),
+    }
+    const {box} = dom;
+    box.style.position = "absolute";
+    box.style.top = "0px";
+    box.style.left = "0px";
+
+    const posValue = {
+      top:0,
+      left:0,
+      right:0,
+    }
+
+    let state = true;
+    // box.addEventListener('click', ()=>{
+    //   let moveTop = setInterval(()=> {
+    //     console.log('interval start');
+    //     if(state ===true){
+    //       console.log(state);
+    //       posValue.top++;
+    //       box.style.top = posValue.top + "px";
+    //       if(posValue.top === 500){
+    //         clearInterval(moveTop);
+    //         state = false;
+    //         posValue.top = 0;
+    //         box.style.top = posValue.top + "px";
+    //       } else {
+    //         state = true;
+    //       }
+    //     }
+    //   }, 16);
+    // })
+
+
+      function _Promise (){
+        return new Promise((resolve, reject)=>{
+          const moveTop = setInterval(function(){
+            console.log('interval start');
+              posValue.top++;
+              box.style.top = posValue.top+"px";
+              if(posValue.top===500){
+                clearInterval(moveTop);
+                resolve();
+              } 
+          }, 16);
+        })
+      }
+
+      function _Promise2 (){
+        return new Promise((resolve, reject)=>{
+          const moveleft = setInterval(function(){
+            console.log('interval start');
+            posValue.left++;
+            box.style.left = posValue.left+"px";
+            if(posValue.left===500){
+              clearInterval(moveleft);
+              resolve();
+            }
+          }, 16); 
+        })
+      }
+      
+      box.addEventListener('click',()=>{
+        // _Promise.then(()=>{})
+        _Promise().then(_Promise2)
+      
+      })
+      
+    
+    
+
+    
+    //   setInterval(()=>{
+    //   console.log('interval start');
+      
+    //   Promise
+    //     .then((value)=>{
+    //       console.log(value);
+    //     })
+    //     .catch((error)=>{
+    //       console.error(error);
+    //     });
+    //     const Promise2 = test(state);
+    //     Promise2
+    //       .then((value)=>{
+    //         console.log(value);
+    //       })
+    //       .catch((error)=>{
+    //         console.error(error);
+    //       });
+    // }, 2000);
+
+    // const test = function(state){
+    //   return new Promise((resolve, reject)=>{
+    //     if(state === true) resolve
+    //   })
+    // }
+
+    
+    
+
+  </script>
+</body>
+</html>
