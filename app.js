@@ -1,17 +1,18 @@
 const express = require('express');
 const { dirname } = require('path');
-const customerRoute = require('./routes/customer');
-const productRoute = require('./routes/product');
+const searchRoute = require('./views/search');
+const myInfoRoute = require('./views/myInfo');
 const morgan = require('morgan'); //미들웨어 연결
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const path = require('path');
 
+
 dotenv.config();
 const app = express();
 app.set('port', process.env.PORT||5050);
-
+// console.dir(dotenv);
 
 
 app.use(morgan('dev'));
@@ -90,15 +91,29 @@ app.use(express.json({
 
 
 
-app.use('/customer', customerRoute);
+app.use('/search', searchRoute);
 // customer 라우트를 추가하고 기본 경로로 /customer 사용
-app.use('/product', productRoute);
+app.use('/myInfo', myInfoRoute);
 // product 라우트를 추가하고 기본경로로 /product 사용
 
 
+// const server = http.createServer((req,res)=>{
+//   const path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase()
+//   switch(path){
+//     case "":
+//     serveStaticFile(res, '/index.html', "text/html");
+//     break;
+
+//     case '/public/js/jsScript/Search.js':
+//     serveStaticFile(res, '/public/js/jsScript/Search.js', 'script/js');
+//     break;
 
 
 
+//   }
+// })
+
+// const require =require('./public/js/jsScript/Search')
 // 라우트 메서드
 // app.get("/customer",(req,res)=>{
 //   res.send("get 요청에 대한 응답");

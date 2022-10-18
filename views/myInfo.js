@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+// const customer = require('../public/js/views/customer.js');
 
 router
   .get("/", (req,res)=>{
     // HTTP 메소드 GET 요청에 대한 조회 처리
-    res.send("상품 정보 조회");
+    res.send("내 정보");
   })
   .post("/insert",(req,res)=>{
     // HTTP 메소드 GET 요청에 대한 저장 처리

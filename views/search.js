@@ -4,7 +4,7 @@ const router = express.Router();
 router
   .get('/', (req,res)=>{
     // HTTP 메소드 GET 요청에 대한 조회 처리
-    res.send("고객 정보 조회");
+    res.send("검색화면");
   })
   .post('/insert',(req,res)=>{
     // HTTP 메소드 GET 요청에 대한 저장 처리
