@@ -15,5 +15,5 @@ setTimeout(()=>{
 
 setTimeout(()=>{
   console.log('근원')
-}, 2000)
+}, 1000)
 
