@@ -92,8 +92,7 @@ const fiexdHistory : item['costName'] = {
     "락토프리우유" : "2개",
   }
 }
-
-// console.log(fixedItem, fiexdHistory);
+console.log(fixedItem, fiexdHistory);
 
 class fix {
   fix1 : object;
@@ -162,7 +161,7 @@ const commingsoon = () =>{
     console.log(count.cafe);
     if((saveCost-(itemCost.cafe*i)) + (itemCost.cano * (count.cano + i)) > 0){
       let a = (saveCost-(itemCost.cafe*i)) + (itemCost.cano * (count.cano + i))
-      console.log(a,"이 부족합니다.")
+      console.log("게임을 사기까지",a,"이 부족합니다.")
 
       // for(let j = 0; j<=count.taxi; j ++){
       //   console.log(count.taxi)
@@ -171,6 +170,7 @@ const commingsoon = () =>{
       //     console.log(b, "이 부족합니다.")
       //   }else(console.log("끝"));
       // }
+      // 이렇게 또 다른 조건 반복문 돌려보려고 했는데 먼저 쓴 for문과 이중으로 같이 돌고, 밖으로 빼려고 하면 a안의 i값이 나오질 못해서 못구해서 어떻게 해아 할지 모르겠음 
 
     }else(console.log("게임을 살 수 있습니다."));
   }
