@@ -10,23 +10,56 @@
 // 배열의 인덱스는 x의 순서. 그래프 x축의 길이 = 100px * 배열의 길이 
 
 const root = document.getElementById("root") as HTMLElement;
+
+const h1 = document.createElement("h1");
+root.appendChild(h1);
+h1.innerHTML = "종합주가지수"
+h1.style.marginRight = "24rem"
+
+
 const div = document.createElement("div");
 root.appendChild(div);
 
-const section1 = document.createElement("section");
-div.appendChild(section1);
 
-// div.style.width 
-
+root.style.width = "98vw";
+root.style.height = "98vh";
+root.style.display = "flex";
+root.style.flexDirection = "column"
+root.style.justifyContent = "flex-end";
+root.style.alignItems = "flex-end";
 
 const domStyle = {
-  width :"90vw",
-  height : "100vh",
+  width :"80.8vw",
+  height : "90vh",
   backgroundColor : "beige"
 }
 div.style.width = domStyle.width;
 div.style.height = domStyle.height;
 div.style.backgroundColor = domStyle.backgroundColor;
+div.style.display = "flex";
+div.style.justifyContent = "flex-end";
+div.style.alignItems = "flex-end";
+div.style.border = "1px solid black";
+
+
+const section1 = document.createElement("section");
+div.appendChild(section1);
+
+// let sec1Child = Array.from(section1.children)
+// console.log(sec1Child)
+
+section1.style.width = "1000px";
+section1.style.height = "200px";
+section1.style.backgroundColor = "#6495ed"; 
+section1.style.display = "flex";
+section1.style.flexDirection = "row";
+section1.style.justifyContent = "flex-end";
+section1.style.alignItems = "flex-end";
+
+
+
+
+
 
 const xStyle = {
   width : "100px",
@@ -37,16 +70,15 @@ const xStyle = {
 
 const kdt_invest : number[] = [2003, 1980, 1989, 1995, 2003, 2007, 2001, 2003, 1970, 1995]
 
-const color : string[] = ["yello", "coral", "blue", "pink", "green", "red", "gary", "orange", "black", "purple"]
+const color : string[] = ["yellow", "coral", "blue", "pink", "green", "red", "gary", "orange", "black", "purple"]
 
 for (let i = 0; i < kdt_invest.length; i++){
   let x = document.createElement("div");
-  div.appendChild(x)
+  x.style.backgroundColor = color[i]
+  section1.appendChild(x)
+  console.log(section1)
   x.style.width = xStyle.width;
   x.style.height = xStyle.height;
-  x.style.display = xStyle.display;
-  x.style.flexDirection = xStyle.flexDirection;
-  // console.log(x)
 }
 
 // const bar_chart = (data : number) => {
