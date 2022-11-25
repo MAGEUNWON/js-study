@@ -21,7 +21,7 @@ const div = document.createElement("div");
 root.appendChild(div);
 
 
-root.style.width = "98vw";
+root.style.width = "99vw";
 root.style.height = "98vh";
 root.style.display = "flex";
 root.style.flexDirection = "column"
@@ -29,7 +29,7 @@ root.style.justifyContent = "flex-end";
 root.style.alignItems = "flex-end";
 
 const domStyle = {
-  width :"80.8vw",
+  width :"85vw",
   height : "90vh",
   backgroundColor : "beige"
 }
@@ -37,9 +37,19 @@ div.style.width = domStyle.width;
 div.style.height = domStyle.height;
 div.style.backgroundColor = domStyle.backgroundColor;
 div.style.display = "flex";
-div.style.justifyContent = "flex-end";
+div.style.justifyContent = "center";
 div.style.alignItems = "flex-end";
 div.style.border = "1px solid black";
+
+const y = document.createElement("div");
+div.appendChild(y);
+y.style.width = "5vw";
+y.style.height = "800px"
+y.style.border = "2px solid red";
+y.style.display = "flex";
+y.style.flexDirection = "column";
+y.style.justifyContent = "space-between";
+y.style.alignItems = "flex-start";
 
 
 const section1 = document.createElement("section");
@@ -59,8 +69,6 @@ section1.style.alignItems = "flex-end";
 
 
 
-
-
 const xStyle = {
   width : "100px",
   height: "200px",
@@ -69,21 +77,48 @@ const xStyle = {
 }
 
 const kdt_invest : number[] = [2003, 1980, 1989, 1995, 2003, 2007, 2001, 2003, 1970, 1995]
+console.log(kdt_invest.sort())
 
 const color : string[] = ["yellow", "coral", "blue", "pink", "green", "red", "gary", "orange", "black", "purple"]
 
-for (let i = 0; i < kdt_invest.length; i++){
-  let x = document.createElement("div");
-  x.style.backgroundColor = color[i]
-  section1.appendChild(x)
-  console.log(section1)
-  x.style.width = xStyle.width;
-  x.style.height = xStyle.height;
+const bar_chart = (data:number[], col:string[]) => {
+
+  let yArr = new Array()
+
+  for(let j = 20; j <120; j++){
+    if(j % 10 === 0){
+      yArr.push(j)
+    }
+  }
+  // 지수의 천, 백 단위 빼고 70, 80, 89 이런식으로 뒷자리만 놓고 10 단위로 간격 설정 해줌. 
+
+  let yArrSort = yArr.sort((a, b)=>{
+    return b -a;
+  })
+
+  console.log(yArrSort)
+
+  for (let i = 0; i < data.length; i++){
+    let x = document.createElement("div");
+    section1.appendChild(x)
+    console.log(section1)
+    x.style.backgroundColor = col[i]
+    x.style.width = xStyle.width;
+    x.style.height = xStyle.height;
+
+    let yDiv = document.createElement("div");
+    y.appendChild(yDiv)
+    console.log(yDiv);
+    yDiv.style.width = "15px";
+    yDiv.style.height = "15px";
+
+    let yInterver = document.createElement("span");
+    yDiv.appendChild(yInterver)
+    yInterver.innerHTML = yArrSort[i]
+  
+  }
 }
 
-// const bar_chart = (data : number) => {
-//   // const x = calc((kdt_invest.length) * 100px)
-//   for (let i of kdt_invest ) {
-//     console.log(i)
-//   }
-// }
+bar_chart(kdt_invest, color);
+
+
