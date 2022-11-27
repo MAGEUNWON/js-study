@@ -60,6 +60,7 @@ var xStyle = {
 var kdt_invest = [2003, 1980, 1989, 1995, 2003, 2007, 2001, 2003, 1970, 1995];
 console.log(kdt_invest.sort());
 var color = ["yellow", "coral", "blue", "pink", "green", "red", "gary", "orange", "black", "purple"];
+
 var bar_chart = function (data, col) {
     var yArr = new Array();
     for (var j = 20; j < 120; j++) {
@@ -67,6 +68,7 @@ var bar_chart = function (data, col) {
             yArr.push(j);
         }
     }
+    // 지수의 천, 백 단위 빼고 70, 80, 89 이런식으로 뒷자리만 놓고 10 단위로 간격 설정 해줌. 
     var yArrSort = yArr.sort(function (a, b) {
         return b - a;
     });
