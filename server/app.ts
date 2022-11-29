@@ -11,6 +11,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
 
   const method = req.method;
   const _url = req.url;
+  // const pathName = url.parse(_url, true).pathName
 
   const readfiles:readfiles =(path)=>{
     return fs.readFileSync(`${path}.txt`,'utf8')
@@ -24,6 +25,13 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
 
   let inputText = `
     <div><span>여기는 a라우터야</span></div>
+  `
+
+  let formText = `
+    <form name = "file" action = "" id = "form" method = "post">
+      <input type = "text" name = "id" id = "input">
+      <input type = "submit" value = "출력">
+    </form>
   `
 
   
@@ -55,7 +63,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
 
         case "/b":
           console.log("b라우터")
-          resSet(200, "text/html", "body.txt", "b라우터입니다", 'utf8' )
+          resSet(200, "text/html", "body.txt", formText, 'utf8' )
           break;
 
         case "/c":
@@ -71,6 +79,14 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
     break;
     case 'POST':
       console.log("post임")
+      switch(_url):
+        case "/post":
+          req.on('data', (data)=>{
+            body = body + data
+          });
+          req.on('end', ()=>{
+            
+          })
   }
 })
 
