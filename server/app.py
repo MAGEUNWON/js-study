@@ -1,4 +1,5 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
+import base64
 # import fileinput
 # import glob
 
@@ -8,88 +9,88 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 #     for line in f:
 #         print(line)
 
-header =  open("header.txt", 'r')
-y = header.read()
 
-file =  open("head.txt", 'w')
-file.write(y)
+head = open("head.txt", "r", encoding="UTF8")
+rHead = head.read()
+
+body = open("body.txt", "r", encoding="UTF8")
+rBody = body.read()
+
+header = open("header.txt", "r", encoding="UTF8")
+rHeader = header.read()
+
+main = open("main.txt", "r", encoding="UTF8")
+rMain = main.read()
+
+footer = open("footer.txt", "r", encoding="UTF8")
+rFooter = footer.read()
 
 
-files = open("head.txt", "r")
-x = files.read()
-print(type(x))
+inputBody = open("body.txt", 'a', encoding="UTF8")
+# y = inputBody.write(f'\n {rHeader} \n {rMain} \n {rFooter}')
+# rInputBody = inputBody.read()
+# print(rHead)
+# print(type(rBody))
+# inputBody.close()
 
-# file =  open("head.txt", 'r')
-# f = file.read()
+inputHead = open("head.txt", "a", encoding="UTF8")
+# html = inputHead.write(f'\n {rBody}')
+# rHtml = inputHead.read()
+print(rHead)
+# rInputBody = open("body.txt", "r", encoding="UTF8" )
+# readInputBody = rInputBody.read()
+# print(readInputBody)
+# files = open("head.txt", "a", encoding='UTF-8')
+# x = files.write(f'\n {header}')
 # print(x)
+# files.close()
 
+# text_byte = rHead.decode('utf-8')
+# print(text_byte)
 
+encode = rHead.encode('UTF-8')
+print(encode)
+# c = rHead.encode("UTF-8")
+# print(c)
 
-
-
-
-# with open("header.txt", 'r') as file:
-#     a = file.readlines()
-#     print(a)
-
-
-# files=('head.txt', 'header.txt', 'body.txt', 'footer.txt')) as file:
-#     for line in file
+decoding = encode.decode('UTF-8')
+# print(decoding)
+# s = base64.b64decode(c)
+# print(type(s))
 
 port = 5000
 
-# # # httpd = HTTPServer(('127.0.0.1', 5000), SimpleHTTPRequestHandler)
-# # # print('서버시작')
-# # # httpd.serve_forever()
-# # # print('서버종료')
+# # httpd = HTTPServer(('127.0.0.1', 5000), SimpleHTTPRequestHandler)
+# # print('서버시작')
+# # httpd.serve_forever()
+# # print('서버종료')
 
-# class MyHTTPRequestHandler( BaseHTTPRequestHandler) :
-#   def do_GET(self):
-#     print('GET방식 요청')
-
-
-#     self.send_response(200)
-#     self.send_header('Content-type', 'text/html; charset=utf-8')
-#     self.end_headers() 
-    
-
-#     # f = ['head.txt', 'header.txt', 'body.txt', 'footer.txt']
-
-#     # with fileinput.input(glob.glob("*.txt")) as f:
-#     #     for line in f:
-#     #         print(line)
+class MyHTTPRequestHandler( BaseHTTPRequestHandler) :
+  def do_GET(self):
+    print('GET방식 요청')
 
 
-#     # readFile = open(f, 'r')
-#     # data = readFile.read()
-    
-    
-#     self.wfile.write(x)
-
-class server :
-  def __init__(self):
-      self.send_response(200)
-
-    @property
-    def 
-   
+    self.send_response(200)
     self.send_header('Content-type', 'text/html; charset=utf-8')
     self.end_headers() 
-    
+    self.wfile.write(encode)
 
-    # f = ['head.txt', 'header.txt', 'body.txt', 'footer.txt']
+# # class server :
+# #   def __init__(self, send_response, send_header, end_headers):
+# #       self.__send_response = send_response
+# #       self.send_header = send_header
+# #       self.end_headers = end_headers
 
-    # with fileinput.input(glob.glob("*.txt")) as f:
-    #     for line in f:
-    #         print(line)
+# #       @property
+# #       def send_response(self):
+# #         return self.__send_response
 
+# #       @send_response.setter
+# #       def send_response(self, send_response):
+# #         self.__send_response = 200
 
-    # readFile = open(f, 'r')
-    # data = readFile.read()
-    
-    
-    self.wfile.write(x)
-
+# #         # self.send_header('Content-type', 'text/html; charset=utf-8')
+# #         # self.end_headers() 
 
 
 if __name__ == '__main__':
@@ -99,7 +100,7 @@ if __name__ == '__main__':
   print('서버종료')
 
 
-  # @property 데코레이터란?
+  # *@property 데코레이터란?
   # 객체의 프로퍼티를 보호해주는  함수
   
   # 이를 알기 위해서 먼저 알아야한 개념으로 접근 제어자가 있음.
