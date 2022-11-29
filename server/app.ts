@@ -77,7 +77,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
         `)
         break;
     }
-    // *switch case 문 함수로 바꿔보기(모든 리터럴을 없애볼 것) , git commit 하기, text/json일 경우가 api 받아오는 형식 . 
+    // *switch case 문 함수로 바꿔보기(모든 리터럴을 없애볼 것) , git commit 하기, text/json일 경우가 api 받아오는 형식 . txt 파일이 수백개여도 계속 동적으로 바꿔줄 수 있는 형태로 만들어 볼 것
 
     // if (_url === "/") {
 
