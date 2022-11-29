@@ -20,19 +20,21 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
   ${readfiles('header')}
   ${readfiles('main')}
   ${readfiles('footer')}
+  ` 
+
+  let inputText = `
+    <div><span>여기는 a라우터야</span></div>
   `
 
+  
+
   const resSet = (statuscode:number, contentType:string, txtName:string, inputText:string, encode:any ) => {
-
     res.writeHead(statuscode,{'Content-Type':contentType})
-
     fs.writeFileSync(txtName, inputText, encode)
-
     res.end(`
     ${readfiles('head')}
     ${readfiles('body')}
-    `)
-    
+    `)    
   }
   
 
@@ -44,65 +46,40 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
         case "/":
           console.log("/라우터")
           resSet(200, "text/html", "body.txt", data, 'utf8' )
-          // fs.writeFileSync('body.txt', data, 'utf8')
-          // console.log("/라우터")
-          // // res.writeHead(200,{'Content-Type':'text/html'})
-          // fs.writeFileSync('body.txt',data,'utf8')    
-          // // res.end(`
-          // //   ${readfiles('head')}
-          // //   ${readfiles('body')}
-          // // `)
         break;
       
         case "/a":
           console.log("a 라우터")
-          resSet(200, "text/html", "body.txt", "a라우터입니다", 'utf8' )
-          // res.writeHead(200,{'Content-Type':'text/html'})
-          // fs.writeFileSync('body.txt',"a라우터입니다",'utf8')
-          // res.end(`
-          // ${readfiles('head')}
-          // ${readfiles('body')}
-          // `)
+          resSet(200, "text/html", "body.txt", inputText, 'utf8' )
           break;
 
         case "/b":
           console.log("b라우터")
           resSet(200, "text/html", "body.txt", "b라우터입니다", 'utf8' )
-          // res.writeHead(200,{'Content-Type':'text/html'})
-          // fs.writeFileSync('body.txt',"b라우터입니다",'utf8')
-          // res.end(`
-          // ${readfiles('head')}
-          // ${readfiles('body')}
-          // `)
           break;
 
         case "/c":
           console.log("c 라우터")
           resSet(200, "text/html", "body.txt", "c라우터입니다", 'utf8' )
-          // res.writeHead(200,{'Content-Type':'text/html'})
-          // fs.writeFileSync('body.txt',"c라우터입니다",'utf8')
-          // res.end(`
-          // ${readfiles('head')}
-          // ${readfiles('body')}
-          // `)
           break;
 
         case "/d":
           console.log("d 라우터")
           resSet(200, "text/html", "body.txt", "d라우터입니다", 'utf8' )
-          // res.writeHead(200,{'Content-Type':'text/html'})
-          // fs.writeFileSync('body.txt',"d라우터입니다",'utf8')
-          // res.end(`
-          // ${readfiles('head')}
-          // ${readfiles('body')}
-          // `)
           break;
       }
-
     break;
     case 'POST':
       console.log("post임")
   }
+})
+
+server.listen(5000, () =>{
+  console.log('서버가 작동되고 있습니다!')
+})
+
+
+ // *switch case 문 함수로 바꿔보기(모든 리터럴을 없애볼 것) , git commit 하기, text/json일 경우가 api 받아오는 형식 . txt 파일이 수백개여도 계속 동적으로 바꿔줄 수 있는 형태로 만들어 볼 것
 
   // if(req.method === 'GET'){
 
@@ -158,60 +135,3 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
   //       `)
   //       break;
 
-    // *switch case 문 함수로 바꿔보기(모든 리터럴을 없애볼 것) , git commit 하기, text/json일 경우가 api 받아오는 형식 . txt 파일이 수백개여도 계속 동적으로 바꿔줄 수 있는 형태로 만들어 볼 것
-
-    // if (_url === "/") {
-
-    //   console.log("/라우터")
-    //   res.writeHead(200,{'Content-Type':'text/html'})
-    //   fs.writeFileSync('body.txt',data,'utf8')
-  
-    //   res.end(`
-    //     ${readfiles('head')}
-    //     ${readfiles('body')}
-    //   `)
-        
-    // } else if(_url === "/a") {
-    //   console.log("a라우터")
-    //   res.writeHead(200,{'Content-Type':'text/html'})
-    //   fs.writeFileSync('body.txt',"a라우터입니다",'utf8')
-    //   res.end(`
-    //   ${readfiles('head')}
-    //   ${readfiles('body')}
-    //   `)
-
-    // } else if(_url === "/b") {
-    //   console.log("b라우터")
-    //   res.writeHead(200,{'Content-Type':'text/html'})
-    //   fs.writeFileSync('body.txt',"b라우터입니다",'utf8')
-    //   res.end(`
-    //   ${readfiles('head')}
-    //   ${readfiles('body')}
-    //   `)
-
-    // } else if(_url === "/c") {
-    //   console.log("c라우터")
-    //   res.writeHead(200,{'Content-Type':'text/html'})
-    //   fs.writeFileSync('body.txt',"c라우터입니다",'utf8')
-    //   res.end(`
-    //   ${readfiles('head')}
-    //   ${readfiles('body')}
-    //   `)
-      
-    // } else if(_url === "/d") {
-    //   console.log("d라우터")
-    //   res.writeHead(200,{'Content-Type':'text/html'})
-    //   fs.writeFileSync('body.txt',"d라우터입니다",'utf8')
-    //   res.end(`
-    //   ${readfiles('head')}
-    //   ${readfiles('body')}
-    //   `)
-    // }
-  
-})
-
-
-
-server.listen(5000, () =>{
-  console.log('서버가 작동되고 있습니다!')
-})
