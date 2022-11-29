@@ -6,11 +6,13 @@ var http = require("http");
 var server = http.createServer(function (req, res) {
     var method = req.method;
     var _url = req.url;
+    // const pathName = url.parse(_url, true).pathName
     var readfiles = function (path) {
         return fs.readFileSync("".concat(path, ".txt"), 'utf8');
     };
     var data = "\n  ".concat(readfiles('header'), "\n  ").concat(readfiles('main'), "\n  ").concat(readfiles('footer'), "\n  ");
     var inputText = "\n    <div><span>\uC5EC\uAE30\uB294 a\uB77C\uC6B0\uD130\uC57C</span></div>\n  ";
+    var formText = "\n    <form name = \"file\" action = \"\" id = \"form\" method = \"post\">\n      <input type = \"text\" name = \"id\" id = \"input\">\n      <input type = \"submit\" value = \"\uCD9C\uB825\">\n    </form>\n  ";
     var resSet = function (statuscode, contentType, txtName, inputText, encode) {
         res.writeHead(statuscode, { 'Content-Type': contentType });
         fs.writeFileSync(txtName, inputText, encode);
@@ -29,7 +31,7 @@ var server = http.createServer(function (req, res) {
                     break;
                 case "/b":
                     console.log("b라우터");
-                    resSet(200, "text/html", "body.txt", "b라우터입니다", 'utf8');
+                    resSet(200, "text/html", "body.txt", formText, 'utf8');
                     break;
                 case "/c":
                     console.log("c 라우터");
@@ -43,6 +45,13 @@ var server = http.createServer(function (req, res) {
             break;
         case 'POST':
             console.log("post임");
+        // switch(_url):
+        //   case "/post":
+        //     req.on('data', (data)=>{
+        //       body = body + data
+        //     });
+        //     req.on('end', ()=>{
+        //     })
     }
 });
 server.listen(5000, function () {

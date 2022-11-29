@@ -79,14 +79,14 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
     break;
     case 'POST':
       console.log("post임")
-      switch(_url):
-        case "/post":
-          req.on('data', (data)=>{
-            body = body + data
-          });
-          req.on('end', ()=>{
+      // switch(_url):
+      //   case "/post":
+      //     req.on('data', (data)=>{
+      //       body = body + data
+      //     });
+      //     req.on('end', ()=>{
             
-          })
+      //     })
   }
 })
 

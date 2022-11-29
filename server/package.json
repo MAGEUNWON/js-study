@@ -4,16 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build" :"tsc",
-    "start" : "node ./app.js",
-    "dev" : "ts-node --esm app.ts"
+    "build": "tsc",
+    "start": "node ./app.js",
+    "dev": "ts-node --esm app.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "typescript": "^4.9.3"
   },
-  
   "devDependencies": {
     "ts-node": "^10.9.1"
   }
