@@ -9,6 +9,21 @@ interface readfiles{
   (path:string):void
 }
 
+
+let obj = {
+  results :[]
+};
+
+// fs.readFile('./header.txt', 'utf8', (err:NodeJS.ErrnoException|null, data:string):void=>{
+//   if(err) throw err;
+//   obj = JSON.parse(data);
+//   console.log(obj)
+// })
+// readfile 일때 타입스크립트 버전
+
+
+
+
 const server = http.createServer((req:http.IncomingMessage , res:http.ServerResponse) =>{
 
   const method = req.method;
@@ -58,7 +73,13 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
       switch(_url) {
         case "/":
           console.log("/라우터")
-          resSet(200, "text/html", "body.txt", data, 'utf8' )
+          res.writeHead(200, {'Content-Type' : 'application/json'})
+          fs.readFile('./header.txt', 'utf8', (err, data)=>{
+            if(err) throw err;
+            console.log(typeof(data));
+            res.end(data)
+          })
+          // resSet(200, "text/html", "body.txt", data, 'utf8' )
         break;
       
         case "/a":
@@ -99,6 +120,9 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
       // 
       req.on('end', ()=>{
         // 더 이상 받을 데이터 없으면 호출, 콜백함수
+        // const data = JSON.parse(body)
+        // json 형식으로 바꿔보기. txt 파일을 배열에 담아서 하나씩 불러오기. 파일 이름이 키가되고 파일 안의 내용의 값이 되게. 얘를 불러서 json으로 바꿀것.
+
         console.log(body, "req.on 저장한 내용 내보냄")
         const post = qs.parse(body);
         console.log(post) //객체로 나옴. {text:'hi'}. 내가 필요한 건 'hi'부분만 필요 
