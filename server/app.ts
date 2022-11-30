@@ -116,14 +116,6 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
 
         resSet(200, "text/html", "body.txt", t, 'utf8' )
       })
-      // switch(_url):
-      //   case "/post":
-      //     req.on('data', (data)=>{
-      //       body = body + data
-      //     });
-      //     req.on('end', ()=>{
-            
-      //     })
   }
 })
 
