@@ -14,9 +14,6 @@ var server = http.createServer(function (req, res) {
     var data = "\n  ".concat(readfiles('header'), "\n  ").concat(readfiles('main'), "\n  ").concat(readfiles('footer'), "\n  ");
     var inputText = "\n    <div><span>\uC5EC\uAE30\uB294 a\uB77C\uC6B0\uD130\uC57C</span></div>\n  ";
     var formText = "\n    <form name = \"file\" action = \"/b\" id = \"form\" method = \"post\">\n      <input type = \"text\" name = \"text\" id = \"input\">\n      <input type = \"submit\" value = \"\uCD9C\uB825\">\n    </form>\n  ";
-    // let formValue = `
-    //   <p>${text}</p>
-    // `
     var resSet = function (statuscode, contentType, txtName, inputText, encode) {
         res.writeHead(statuscode, { 'Content-Type': contentType });
         fs.writeFileSync(txtName, inputText, encode);
@@ -61,9 +58,10 @@ var server = http.createServer(function (req, res) {
                 console.log(body_1, "this is last event");
                 var post = qs.parse(body_1);
                 var text = post.text;
+                var textFile = fs.writeFileSync('value.txt', text, 'utf-8');
                 console.log(text);
-                // console.log(post)
-                resSet(200, "text/html", "body.txt", "<p>".concat(text, "</p>"), 'utf8');
+                var t = "\n          ".concat(readfiles('value'), "\n        ");
+                resSet(200, "text/html", "body.txt", t, 'utf8');
             });
         // switch(_url):
         //   case "/post":

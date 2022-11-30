@@ -35,9 +35,6 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
     </form>
   `
   
-  // let formValue = `
-  //   <p>${text}</p>
-  // `
 
   const resSet = (statuscode:number, contentType:string, txtName:string, inputText:string, encode:any ) => {
     res.writeHead(statuscode,{'Content-Type':contentType})
@@ -88,16 +85,24 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
         console.dir(body)
         console.log(data)
         data = data.toString('utf8');
-        console.log(data, "this is first event");
+        console.log(data, "data를 한글로 변환");
       })
 
       req.on('end', ()=>{
-        console.log(body, "this is last event")
+        console.log(body, "req.on 저장한 내용 내보냄")
         const post = qs.parse(body);
         const text = post.text;
+
+        fs.writeFileSync('value.txt', text, 'utf-8')
+        // text 받은 값으로 새로운 txt 파일 만듬. 
         console.log(text)
-        // console.log(post)
-        resSet(200, "text/html", "body.txt", `<p>${text}</p>`, 'utf8' )
+
+        let t = `
+          ${readfiles('value')}
+        `
+        // txt파일 읽어서 string으로 출력 
+
+        resSet(200, "text/html", "body.txt", t, 'utf8' )
       })
       // switch(_url):
       //   case "/post":
