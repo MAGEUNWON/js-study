@@ -2,6 +2,7 @@ import * as fs from 'fs';
 // import * as fs from 'fs'; 앞에 * 붙여주면 fs의 모든 것을 다 쓰겠다는 뜻. 이렇게 써줘야 하나씩 설정 안하고 다 쓸 수 있음.
 import * as http from 'http';
 // const url = require('url');
+const qs = require('querystring')
 
 interface readfiles{
   (path:string):void
@@ -11,7 +12,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
 
   const method = req.method;
   const _url = req.url;
-  // const pathName = url.parse(_url, true).pathName
+  
 
   const readfiles:readfiles =(path)=>{
     return fs.readFileSync(`${path}.txt`,'utf8')
@@ -28,13 +29,15 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
   `
 
   let formText = `
-    <form name = "file" action = "" id = "form" method = "post">
-      <input type = "text" name = "id" id = "input">
+    <form name = "file" action = "/b" id = "form" method = "post">
+      <input type = "text" name = "text" id = "input">
       <input type = "submit" value = "출력">
     </form>
   `
-
   
+  // let formValue = `
+  //   <p>${text}</p>
+  // `
 
   const resSet = (statuscode:number, contentType:string, txtName:string, inputText:string, encode:any ) => {
     res.writeHead(statuscode,{'Content-Type':contentType})
@@ -79,6 +82,23 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
     break;
     case 'POST':
       console.log("post임")
+      let body = "";
+      req.on('data', (data)=>{
+        body += data;
+        console.dir(body)
+        console.log(data)
+        data = data.toString('utf8');
+        console.log(data, "this is first event");
+      })
+
+      req.on('end', ()=>{
+        console.log(body, "this is last event")
+        const post = qs.parse(body);
+        const text = post.text;
+        console.log(text)
+        // console.log(post)
+        resSet(200, "text/html", "body.txt", `<p>${text}</p>`, 'utf8' )
+      })
       // switch(_url):
       //   case "/post":
       //     req.on('data', (data)=>{

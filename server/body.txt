@@ -1,6 +1,1 @@
-
-    <form name = "file" action = "" id = "form" method = "post">
-      <input type = "text" name = "id" id = "input">
-      <input type = "submit" value = "출력">
-    </form>
-  
+<p>안뇽</p>

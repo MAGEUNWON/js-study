@@ -3,16 +3,20 @@ exports.__esModule = true;
 var fs = require("fs");
 // import * as fs from 'fs'; 앞에 * 붙여주면 fs의 모든 것을 다 쓰겠다는 뜻. 이렇게 써줘야 하나씩 설정 안하고 다 쓸 수 있음.
 var http = require("http");
+// const url = require('url');
+var qs = require('querystring');
 var server = http.createServer(function (req, res) {
     var method = req.method;
     var _url = req.url;
-    // const pathName = url.parse(_url, true).pathName
     var readfiles = function (path) {
         return fs.readFileSync("".concat(path, ".txt"), 'utf8');
     };
     var data = "\n  ".concat(readfiles('header'), "\n  ").concat(readfiles('main'), "\n  ").concat(readfiles('footer'), "\n  ");
     var inputText = "\n    <div><span>\uC5EC\uAE30\uB294 a\uB77C\uC6B0\uD130\uC57C</span></div>\n  ";
-    var formText = "\n    <form name = \"file\" action = \"\" id = \"form\" method = \"post\">\n      <input type = \"text\" name = \"id\" id = \"input\">\n      <input type = \"submit\" value = \"\uCD9C\uB825\">\n    </form>\n  ";
+    var formText = "\n    <form name = \"file\" action = \"/b\" id = \"form\" method = \"post\">\n      <input type = \"text\" name = \"text\" id = \"input\">\n      <input type = \"submit\" value = \"\uCD9C\uB825\">\n    </form>\n  ";
+    // let formValue = `
+    //   <p>${text}</p>
+    // `
     var resSet = function (statuscode, contentType, txtName, inputText, encode) {
         res.writeHead(statuscode, { 'Content-Type': contentType });
         fs.writeFileSync(txtName, inputText, encode);
@@ -45,6 +49,22 @@ var server = http.createServer(function (req, res) {
             break;
         case 'POST':
             console.log("post임");
+            var body_1 = "";
+            req.on('data', function (data) {
+                body_1 += data;
+                console.dir(body_1);
+                console.log(data);
+                data = data.toString('utf8');
+                console.log(data, "this is first event");
+            });
+            req.on('end', function () {
+                console.log(body_1, "this is last event");
+                var post = qs.parse(body_1);
+                var text = post.text;
+                console.log(text);
+                // console.log(post)
+                resSet(200, "text/html", "body.txt", "<p>".concat(text, "</p>"), 'utf8');
+            });
         // switch(_url):
         //   case "/post":
         //     req.on('data', (data)=>{
