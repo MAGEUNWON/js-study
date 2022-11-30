@@ -1,14 +1,4 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-import base64
-# import fileinput
-# import glob
-
-# f = ['head.txt', 'header.txt', 'body.txt', 'footer.txt']
-
-# with fileinput.input(glob.glob("*.txt")) as f:
-#     for line in f:
-#         print(line)
-
 
 head = open("head.txt", "r", encoding="UTF8")
 rHead = head.read()
@@ -26,37 +16,38 @@ footer = open("footer.txt", "r", encoding="UTF8")
 rFooter = footer.read()
 
 
-inputBody = open("body.txt", 'a', encoding="UTF8")
+# inputBody = open("body.txt", 'a', encoding="UTF8")
 # y = inputBody.write(f'\n {rHeader} \n {rMain} \n {rFooter}')
-# rInputBody = inputBody.read()
-# print(rHead)
-# print(type(rBody))
 # inputBody.close()
+#빈 body txt에 header, main, footer 넣음. 위의 3줄은 한 번 해서 들어가면 닫아줌. body 비어있으면 다시 주석 풀어서 달고 넣은 후 닫아주기. 얘가 먼저 들어가 있어야 서버에 뜸. 
 
-inputHead = open("head.txt", "a", encoding="UTF8")
+# inputHead = open("head.txt", "a", encoding="UTF8")
 # html = inputHead.write(f'\n {rBody}')
-# rHtml = inputHead.read()
-print(rHead)
-# rInputBody = open("body.txt", "r", encoding="UTF8" )
-# readInputBody = rInputBody.read()
-# print(readInputBody)
-# files = open("head.txt", "a", encoding='UTF-8')
-# x = files.write(f'\n {header}')
-# print(x)
-# files.close()
+# # print(html)
+# inputHead.close()
+#head txt에 header, main, footer 추가한 body 넣음. html 형식이 됨. 위의 3줄 넣어서 head에 body 내용 추가되면 얘도 닫음. 얘도 들어가 있어야 서버에서 얘를 최종본으로 출력해줌. head에 body 내용 없으면 다시 넣어줘야 함. 
 
-# text_byte = rHead.decode('utf-8')
-# print(text_byte)
+rInputBody = open("body.txt", "r", encoding="UTF8" )
+readInputBody = rInputBody.read()
+print(readInputBody)
+# 다 추가한 body를 읽음, 안 읽으면 안됨 처리가 안됨. 추가하고 읽는거까지 해야 하나봄.  
 
+rInputHead = open("head.txt", "r", encoding="UTF8" )
+readInputHead = rInputHead.read()
+print(readInputHead)
+# body를 추가한 head를 읽음. 
+
+
+# 파이썬에서 사용되는 문자열은 모두 유니코드. byte형식으로 이루어짐. 
+# 때문에 파이썬에서 인식하려면 byte형식으로 출력해줘야함(서버에서 출력할 때도 그래서 byte형식, encode로 출력해줘야 나옴.)
 encode = rHead.encode('UTF-8')
 print(encode)
-# c = rHead.encode("UTF-8")
-# print(c)
+# encode는 파이썬의 문자열을 바이트 코드인 utf-8, euc-kr, ascii형식의 byte코드로 변환하는 것을 말함. 문자열을 숫자로 바꾸는 형식임. 
 
 decoding = encode.decode('UTF-8')
-# print(decoding)
-# s = base64.b64decode(c)
-# print(type(s))
+print(decoding)
+#decode는 파이썬의 인코딩의 반대역할, utf-8, euc-kr, ascii형식의 byte코드를 문자열로 변환하는 방법. 
+
 
 port = 5000
 
