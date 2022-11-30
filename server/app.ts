@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as http from 'http';
 // const url = require('url');
 const qs = require('querystring')
+// post방식 query string으로 추출하기 위해 모듈 불러옴. 얘는 import는 안되나?
 
 interface readfiles{
   (path:string):void
@@ -12,11 +13,13 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
 
   const method = req.method;
   const _url = req.url;
+  // url 변수로 담아서 switch문 매개변수로 씀. 
   
 
   const readfiles:readfiles =(path)=>{
     return fs.readFileSync(`${path}.txt`,'utf8')
     } 
+    // txt 파일 읽는 함수. 한글로 인코딩
 
   let data = `
   ${readfiles('header')}
@@ -27,6 +30,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
   let inputText = `
     <div><span>여기는 a라우터야</span></div>
   `
+  // 그냥 테스트로 만든거
 
   let formText = `
     <form name = "file" action = "/b" id = "form" method = "post">
@@ -34,6 +38,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
       <input type = "submit" value = "출력">
     </form>
   `
+  // form 태그 넣을 것 
   
 
   const resSet = (statuscode:number, contentType:string, txtName:string, inputText:string, encode:any ) => {
@@ -44,7 +49,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
     ${readfiles('body')}
     `)    
   }
-  
+  // 반복되는 부분 함수로 묶음. 
 
   
   switch(method){
@@ -80,18 +85,25 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
     case 'POST':
       console.log("post임")
       let body = "";
+      // 빈 바디 준비, 여기에 data(chunk, 쿼리스트링 버퍼), 빈 배열로 만들어서 push하기도 함. 
       req.on('data', (data)=>{
         body += data;
+        // body에 바로 data 저장
         console.dir(body)
         console.log(data)
+        // 인코딩 하기 전이라 쿼리스트링 버퍼가 buffer어쩌구로 나옴. 
         data = data.toString('utf8');
+        // 쿼리스트링 버퍼를 문자열 형태로 변환, 이러면 쿼리스트링을 프로그래밍적으로 처리할 수 있게 됨. 
         console.log(data, "data를 한글로 변환");
       })
-
+      // 
       req.on('end', ()=>{
+        // 더 이상 받을 데이터 없으면 호출, 콜백함수
         console.log(body, "req.on 저장한 내용 내보냄")
         const post = qs.parse(body);
+        console.log(post) //객체로 나옴. {text:'hi'}. 내가 필요한 건 'hi'부분만 필요 
         const text = post.text;
+        // 그래서 빼냄. 
 
         fs.writeFileSync('value.txt', text, 'utf-8')
         // text 받은 값으로 새로운 txt 파일 만듬. 
