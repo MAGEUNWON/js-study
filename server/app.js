@@ -5,6 +5,15 @@ var fs = require("fs");
 var http = require("http");
 // const url = require('url');
 var qs = require('querystring');
+var obj = {
+    results: []
+};
+// fs.readFile('./header.txt', 'utf8', (err:NodeJS.ErrnoException|null, data:string):void=>{
+//   if(err) throw err;
+//   obj = JSON.parse(data);
+//   console.log(obj)
+// })
+// readfile 일때 타입스크립트 버전
 var server = http.createServer(function (req, res) {
     var method = req.method;
     var _url = req.url;
@@ -29,6 +38,13 @@ var server = http.createServer(function (req, res) {
             switch (_url) {
                 case "/":
                     console.log("/라우터");
+                    res.writeHead(200, { 'Content-Type': 'text/html' });
+                    fs.readFile('./header.txt', 'utf8', function (err, data) {
+                        if (err)
+                            throw err;
+                        console.log(typeof (data));
+                        res.end(data);
+                    });
                     resSet(200, "text/html", "body.txt", data, 'utf8');
                     break;
                 case "/a":
@@ -66,10 +82,13 @@ var server = http.createServer(function (req, res) {
             // 
             req.on('end', function () {
                 // 더 이상 받을 데이터 없으면 호출, 콜백함수
+                // const data = JSON.parse(body)
+                // json 형식으로 바꿔보기. txt 파일을 배열에 담아서 하나씩 불러오기. 파일 이름이 키가되고 파일 안의 내용의 값이 되게. 얘를 불러서 json으로 바꿀것.
                 console.log(body_1, "req.on 저장한 내용 내보냄");
                 var post = qs.parse(body_1);
-                console.log(post);
+                console.log(post); //객체로 나옴. {text:'hi'}. 내가 필요한 건 'hi'부분만 필요 
                 var text = post.text;
+                // 그래서 빼냄. 
                 fs.writeFileSync('value.txt', text, 'utf-8');
                 // text 받은 값으로 새로운 txt 파일 만듬. 
                 console.log(text);
@@ -77,13 +96,6 @@ var server = http.createServer(function (req, res) {
                 // txt파일 읽어서 string으로 출력 
                 resSet(200, "text/html", "body.txt", t, 'utf8');
             });
-        // switch(_url):
-        //   case "/post":
-        //     req.on('data', (data)=>{
-        //       body = body + data
-        //     });
-        //     req.on('end', ()=>{
-        //     })
     }
 });
 server.listen(5000, function () {

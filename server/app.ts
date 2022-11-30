@@ -73,13 +73,13 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
       switch(_url) {
         case "/":
           console.log("/라우터")
-          res.writeHead(200, {'Content-Type' : 'application/json'})
+          res.writeHead(200, {'Content-Type' : 'text/html'})
           fs.readFile('./header.txt', 'utf8', (err, data)=>{
             if(err) throw err;
             console.log(typeof(data));
             res.end(data)
           })
-          // resSet(200, "text/html", "body.txt", data, 'utf8' )
+          resSet(200, "text/html", "body.txt", data, 'utf8' )
         break;
       
         case "/a":
