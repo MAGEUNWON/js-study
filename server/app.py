@@ -1,38 +1,38 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
-head = open("head.txt", "r", encoding="UTF8")
+head = open("./python.txt/head.txt", "r", encoding="UTF8")
 rHead = head.read()
 
-body = open("body.txt", "r", encoding="UTF8")
+body = open("./python.txt/body.txt", "r", encoding="UTF8")
 rBody = body.read()
 
-header = open("header.txt", "r", encoding="UTF8")
+header = open("./python.txt/header.txt", "r", encoding="UTF8")
 rHeader = header.read()
 
-main = open("main.txt", "r", encoding="UTF8")
+main = open("./python.txt/main.txt", "r", encoding="UTF8")
 rMain = main.read()
 
-footer = open("footer.txt", "r", encoding="UTF8")
+footer = open("./python.txt/footer.txt", "r", encoding="UTF8")
 rFooter = footer.read()
 
 
-# inputBody = open("body.txt", 'a', encoding="UTF8")
+# inputBody = open("./python.txt/body.txt", 'a', encoding="UTF8")
 # y = inputBody.write(f'\n {rHeader} \n {rMain} \n {rFooter}')
 # inputBody.close()
 #빈 body txt에 header, main, footer 넣음. 위의 3줄은 한 번 해서 들어가면 닫아줌. body 비어있으면 다시 주석 풀어서 달고 넣은 후 닫아주기. 얘가 먼저 들어가 있어야 서버에 뜸. 
 
-# inputHead = open("head.txt", "a", encoding="UTF8")
+# inputHead = open("./python.txt/head.txt", "a", encoding="UTF8")
 # html = inputHead.write(f'\n {rBody}')
 # # print(html)
 # inputHead.close()
 #head txt에 header, main, footer 추가한 body 넣음. html 형식이 됨. 위의 3줄 넣어서 head에 body 내용 추가되면 얘도 닫음. 얘도 들어가 있어야 서버에서 얘를 최종본으로 출력해줌. head에 body 내용 없으면 다시 넣어줘야 함. 
 
-rInputBody = open("body.txt", "r", encoding="UTF8" )
+rInputBody = open("./python.txt/body.txt", "r", encoding="UTF8" )
 readInputBody = rInputBody.read()
 print(readInputBody)
 # 다 추가한 body를 읽음, 안 읽으면 안됨 처리가 안됨. 추가하고 읽는거까지 해야 하나봄.  
 
-rInputHead = open("head.txt", "r", encoding="UTF8" )
+rInputHead = open("./python.txt/head.txt", "r", encoding="UTF8" )
 readInputHead = rInputHead.read()
 print(readInputHead)
 # body를 추가한 head를 읽음. 

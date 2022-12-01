@@ -32,7 +32,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
   
 
   const readfiles:readfiles =(path)=>{
-    return fs.readFileSync(`${path}.txt`,'utf8')
+    return fs.readFileSync(`./txt/${path}.txt`,'utf8')
     } 
     // txt 파일 읽는 함수. 한글로 인코딩
 
@@ -74,32 +74,32 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
         case "/":
           console.log("/라우터")
           res.writeHead(200, {'Content-Type' : 'text/html'})
-          fs.readFile('./header.txt', 'utf8', (err, data)=>{
+          fs.readFile('./txt/header.txt', 'utf8', (err, data)=>{
             if(err) throw err;
             console.log(typeof(data));
             res.end(data)
           })
-          resSet(200, "text/html", "body.txt", data, 'utf8' )
+          resSet(200, "text/html", "./txt/body.txt", data, 'utf8' )
         break;
       
         case "/a":
           console.log("a 라우터")
-          resSet(200, "text/html", "body.txt", inputText, 'utf8' )
+          resSet(200, "text/html", "./txt/body.txt", inputText, 'utf8' )
           break;
 
         case "/b":
           console.log("b라우터")
-          resSet(200, "text/html", "body.txt", formText, 'utf8' )
+          resSet(200, "text/html", "./txt/body.txt", formText, 'utf8' )
           break;
 
         case "/c":
           console.log("c 라우터")
-          resSet(200, "text/html", "body.txt", "c라우터입니다", 'utf8' )
+          resSet(200, "text/html", "./txt/body.txt", "c라우터입니다", 'utf8' )
           break;
 
         case "/d":
           console.log("d 라우터")
-          resSet(200, "text/html", "body.txt", "d라우터입니다", 'utf8' )
+          resSet(200, "text/html", "./txt/body.txt", "d라우터입니다", 'utf8' )
           break;
       }
     break;
@@ -129,7 +129,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
         const text = post.text;
         // 그래서 빼냄. 
 
-        fs.writeFileSync('value.txt', text, 'utf-8')
+        fs.writeFileSync('./txt/value.txt', text, 'utf-8')
         // text 받은 값으로 새로운 txt 파일 만듬. 
         console.log(text)
 
@@ -138,7 +138,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
         `
         // txt파일 읽어서 string으로 출력 
 
-        resSet(200, "text/html", "body.txt", t, 'utf8' )
+        resSet(200, "text/html", "./txt/body.txt", t, 'utf8' )
       })
   }
 })

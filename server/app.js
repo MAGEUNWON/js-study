@@ -19,7 +19,7 @@ var server = http.createServer(function (req, res) {
     var _url = req.url;
     // url 변수로 담아서 switch문 매개변수로 씀. 
     var readfiles = function (path) {
-        return fs.readFileSync("".concat(path, ".txt"), 'utf8');
+        return fs.readFileSync("./txt/".concat(path, ".txt"), 'utf8');
     };
     // txt 파일 읽는 함수. 한글로 인코딩
     var data = "\n  ".concat(readfiles('header'), "\n  ").concat(readfiles('main'), "\n  ").concat(readfiles('footer'), "\n  ");
@@ -39,29 +39,29 @@ var server = http.createServer(function (req, res) {
                 case "/":
                     console.log("/라우터");
                     res.writeHead(200, { 'Content-Type': 'text/html' });
-                    fs.readFile('./header.txt', 'utf8', function (err, data) {
+                    fs.readFile('./txt/header.txt', 'utf8', function (err, data) {
                         if (err)
                             throw err;
                         console.log(typeof (data));
                         res.end(data);
                     });
-                    resSet(200, "text/html", "body.txt", data, 'utf8');
+                    resSet(200, "text/html", "./txt/body.txt", data, 'utf8');
                     break;
                 case "/a":
                     console.log("a 라우터");
-                    resSet(200, "text/html", "body.txt", inputText, 'utf8');
+                    resSet(200, "text/html", "./txt/body.txt", inputText, 'utf8');
                     break;
                 case "/b":
                     console.log("b라우터");
-                    resSet(200, "text/html", "body.txt", formText, 'utf8');
+                    resSet(200, "text/html", "./txt/body.txt", formText, 'utf8');
                     break;
                 case "/c":
                     console.log("c 라우터");
-                    resSet(200, "text/html", "body.txt", "c라우터입니다", 'utf8');
+                    resSet(200, "text/html", "./txt/body.txt", "c라우터입니다", 'utf8');
                     break;
                 case "/d":
                     console.log("d 라우터");
-                    resSet(200, "text/html", "body.txt", "d라우터입니다", 'utf8');
+                    resSet(200, "text/html", "./txt/body.txt", "d라우터입니다", 'utf8');
                     break;
             }
             break;
@@ -89,12 +89,12 @@ var server = http.createServer(function (req, res) {
                 console.log(post); //객체로 나옴. {text:'hi'}. 내가 필요한 건 'hi'부분만 필요 
                 var text = post.text;
                 // 그래서 빼냄. 
-                fs.writeFileSync('value.txt', text, 'utf-8');
+                fs.writeFileSync('./txt/value.txt', text, 'utf-8');
                 // text 받은 값으로 새로운 txt 파일 만듬. 
                 console.log(text);
                 var t = "\n          ".concat(readfiles('value'), "\n        ");
                 // txt파일 읽어서 string으로 출력 
-                resSet(200, "text/html", "body.txt", t, 'utf8');
+                resSet(200, "text/html", "./txt/body.txt", t, 'utf8');
             });
     }
 });
