@@ -10,9 +10,6 @@ interface readfiles{
 }
 
 
-let obj = {
-  results :[]
-};
 
 // fs.readFile('./header.txt', 'utf8', (err:NodeJS.ErrnoException|null, data:string):void=>{
 //   if(err) throw err;
@@ -33,7 +30,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
 
   const readfiles:readfiles =(path)=>{
     return fs.readFileSync(`./txt/${path}.txt`,'utf8')
-    } 
+  } 
     // txt 파일 읽는 함수. 한글로 인코딩
 
   let data = `
@@ -64,7 +61,7 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
     ${readfiles('body')}
     `)    
   }
-  // 반복되는 부분 함수로 묶음. 
+  // 반복되는 부분 함수로 묶음.   
 
   
   switch(method){
@@ -72,13 +69,13 @@ const server = http.createServer((req:http.IncomingMessage , res:http.ServerResp
       
       switch(_url) {
         case "/":
-          console.log("/라우터")
-          res.writeHead(200, {'Content-Type' : 'text/html'})
-          fs.readFile('./txt/header.txt', 'utf8', (err, data)=>{
-            if(err) throw err;
-            console.log(typeof(data));
-            res.end(data)
-          })
+          // console.log("/라우터")
+          // res.writeHead(200, {'Content-Type' : 'text/html'})
+          // fs.readFile('./txt/header.txt', 'utf8', (err, data)=>{
+          //   if(err) throw err;
+          //   console.log(typeof(data));
+          //   res.end(data)
+          // })
           resSet(200, "text/html", "./txt/body.txt", data, 'utf8' )
         break;
       
