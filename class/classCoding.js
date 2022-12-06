@@ -16,9 +16,47 @@ class student {
     this.studentNum = studentNum;
   }
 
-  list(){
-    return `이름: ${this.name}, 생년월일: ${this.birth}, 훈련강의실: ${this.classRoom}, 연락처: ${this.phone}, 이메일: ${this.email}, 훈련강의명: ${this.className}, 훈련시작일: ${this.classStart}, 훈련종료일: ${this.classEnd}, 훈련생번호: ${this.studentNum}`
+  get birth(){
+    return this._birth;
   }
+  set birth(value){
+    if(typeof value === "string" & value.length === 8){
+      this._birth = value;
+    }else if(typeof value !== "string" & String(value).length===8){
+      this._birth = String(value)
+    }else if(String(value).length !==8 ){
+      console.log("년4자리 월2자리 일2자리 형식으로 써주세요")}
+  }
+
+  // get NCS(){
+  //   return this._NCS;
+  // }
+  // set NCS(value){
+  //   if(typeof value === "string"){
+  //     this._NCS = value;
+  //   }else{
+  //     this._NCS = String(value)
+  //   }
+  // }
+
+  get classRoom(){
+    return this._classRoom;
+  }
+  set classRoom(value){
+    if(typeof value === "string"){
+      this._classRoom = value;
+    }else{
+      this._classRoom = String(value)
+    }
+  }
+
+
+
+
+
+  // list(){
+  //   return `이름: ${this.name}, 생년월일: ${this.birth}, 훈련강의실: ${this.classRoom}, 연락처: ${this.phone}, 이메일: ${this.email}, 훈련강의명: ${this.className}, 훈련시작일: ${this.classStart}, 훈련종료일: ${this.classEnd}, 훈련생번호: ${this.studentNum}`
+  // }
 
   
 }
@@ -70,4 +108,34 @@ console.log(info)
 
 // const student1 = new student("마근원", "19970407", "ncs", "305", "010","google", "풀스텍","07", "01", "0505" )
 // console.log(student1)
+
+class BasicStudentInfo {
+  constructor(studentName, phoneNumber, subNumber, email, cityName){
+    this.studentName = studentName;
+    this.phoneNumber = phoneNumber;
+    this.subNumber = subNumber;
+    this.email = email;
+    this.cityName = cityName
+  }
+
+  get cityName(){
+    return this._cityName;
+  }
+  set cityName(value){
+    // if(typeof value === "string"){
+    //   this._cityName = value;
+    // }else{
+    //   console.log("데이터타입 변경")
+    //   this._cityName = String(value);
+    // }
+  }
+}
+
+const kong = new BasicStudentInfo("공욱재", "010-1234-5678", "02-456-7894", "hi@google.com", 12345678)
+
+// console.log(kong)
+// console.log(typeof kong.cityName);
+// console.log(typeof kong._cityName);
+// console.log(kong.cityName === kong._cityName)
+
 
