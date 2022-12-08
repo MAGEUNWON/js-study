@@ -28,16 +28,6 @@ class student {
       console.log("년4자리 월2자리 일2자리 형식으로 써주세요")}
   }
 
-  // get NCS(){
-  //   return this._NCS;
-  // }
-  // set NCS(value){
-  //   if(typeof value === "string"){
-  //     this._NCS = value;
-  //   }else{
-  //     this._NCS = String(value)
-  //   }
-  // }
 
   get classRoom(){
     return this._classRoom;
@@ -50,17 +40,55 @@ class student {
     }
   }
 
+  get phone(){
+    return this._phone;
+  } //근데 get이 없어도 set 내용이 나오긴 나오네
+  set phone(value){
+    if(typeof value === "string"){
+      this._phone = String(value).replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`); //문자열에 하이픈 넣는 정규식
+    }else{
+      console.log("전화번호는 10~11자리 문자열로만 써줘")
+    }
+  }
 
-
-
-
-  // list(){
-  //   return `이름: ${this.name}, 생년월일: ${this.birth}, 훈련강의실: ${this.classRoom}, 연락처: ${this.phone}, 이메일: ${this.email}, 훈련강의명: ${this.className}, 훈련시작일: ${this.classStart}, 훈련종료일: ${this.classEnd}, 훈련생번호: ${this.studentNum}`
-  // }
-
+  get classStart(){
+    return this._classStart
+  }
+  set classStart(value){
+    if(typeof value === "string"){
+      this._classStart = value;
+      console.log(" '-' 연, 원, 일에 맞게 하이픈을 넣어주세요")
+    }else{
+      this._classStart = String(value)
+      console.log(" 문자열로 '-' 연, 원, 일에 맞게 하이픈을 넣어주세요")
+    }
+  }
   
+  get classEnd(){
+    return this._classStart
+  }
+  set classEnd(value){
+    if(typeof value === "string"){
+      this._classend = value;
+      console.log(" '-' 연, 원, 일에 맞게 하이픈을 넣어주세요")
+    }else{
+      this._classend = String(value)
+      console.log(" 문자열로 연, 원, 일에 맞게 '-'  하이픈을 넣어주세요")
+    }
+  }
+
+  set studentNum(value){
+    if(typeof value === "string"){
+      this._classend = value;
+    }else{
+      this._classend = String(value)
+      console.log(" 문자열로 강의실 번호 뒤에 '-' 하이픈을 넣어주세요")
+    }
+  }
+
+
 }
-const info = new student("마근원", "19970407", "1", "정보기술개발", "305", "010-1234-5678","hi@google.com", "풀스텍 Training","2022-07-19", "2023-01-05", "305-01")
+const info = new student("마근원", 19970407, "1", "정보기술개발", 305, "01025455688","hi@google.com", "풀스텍 Training", "2022-07-19", "2023-01-05", "305-01")
 
 console.log(info)
 
@@ -109,29 +137,29 @@ console.log(info)
 // const student1 = new student("마근원", "19970407", "ncs", "305", "010","google", "풀스텍","07", "01", "0505" )
 // console.log(student1)
 
-class BasicStudentInfo {
-  constructor(studentName, phoneNumber, subNumber, email, cityName){
-    this.studentName = studentName;
-    this.phoneNumber = phoneNumber;
-    this.subNumber = subNumber;
-    this.email = email;
-    this.cityName = cityName
-  }
+// class BasicStudentInfo {
+//   constructor(studentName, phoneNumber, subNumber, email, cityName){
+//     this.studentName = studentName;
+//     this.phoneNumber = phoneNumber;
+//     this.subNumber = subNumber;
+//     this.email = email;
+//     this.cityName = cityName
+//   }
 
-  get cityName(){
-    return this._cityName;
-  }
-  set cityName(value){
-    // if(typeof value === "string"){
-    //   this._cityName = value;
-    // }else{
-    //   console.log("데이터타입 변경")
-    //   this._cityName = String(value);
-    // }
-  }
-}
+//   get cityName(){
+//     return this._cityName;
+//   }
+//   set cityName(value){
+//     // if(typeof value === "string"){
+//     //   this._cityName = value;
+//     // }else{
+//     //   console.log("데이터타입 변경")
+//     //   this._cityName = String(value);
+//     // }
+//   }
+// }
 
-const kong = new BasicStudentInfo("공욱재", "010-1234-5678", "02-456-7894", "hi@google.com", 12345678)
+// const kong = new BasicStudentInfo("공욱재", "010-1234-5678", "02-456-7894", "hi@google.com", 12345678)
 
 // console.log(kong)
 // console.log(typeof kong.cityName);
