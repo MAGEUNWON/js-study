@@ -1,12 +1,13 @@
 const express = require('express');
 const { dirname } = require('path');
-const searchRoute = require('./views/search');
-const myInfoRoute = require('./views/myInfo');
+const myFaivoriteMovieRoute = require('./routes/myFaivoriteMovie');
+const myInfoRoute = require('./routes/myInfo');
 const morgan = require('morgan'); //미들웨어 연결
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const path = require('path');
+
 
 
 dotenv.config();
@@ -24,6 +25,12 @@ app.use(morgan('dev'));
 // 이 패턴은 기존 미들웨어의 기능을 확장할 수 있음. 조건문에 따라 다른 미들웨어 적용할 수 있는 등. 
 
 app.use('/', express.static(path.join(__dirname, 'public')));
+
+// app.use('/', express.static(path.join(__dirname, 'public')));
+// app.get('/', (req,res)=>{
+//   res.sendFile(path.join(__dirname+ '/public/index.html'));
+// })
+
 app.use(express.json());// 클라이언트에서 application/json 데이터를 보냈을 때 파싱해서 body 객체에 넣어줌
 app.use(express.urlencoded({extended: false}));//클라이언트에서  application/x-www-form-urlencoded 데이터를 보냈을 때 파싱해서 body 객체에 넣어줌.
 // url-encoded는 주소형식으로 데이터를 보내는 방식. 폼 전송은 URL-encoded 방식을 주로 사용. 
@@ -52,9 +59,11 @@ app.use(session({
 
 
 app.use((req, res, next)=>{
+  
   console.log('모든 요청에 다 실행됩니다.');
   next();
 });
+
 
 app.get('/', (req, res, next)=>{
   console.log('GET/요청에서만 실행됩니다.');
@@ -62,6 +71,11 @@ app.get('/', (req, res, next)=>{
 }, (req, res)=>{
   throw new Error('에러는 에러 처리 미들웨어로 갑니다.')
 });
+
+// app.post((req, res, next)=>{
+//   res.redirect('/myFaivoriteMovie');
+// })
+
 
 app.use((err, req, res, next)=>{
   console.log(err);
@@ -83,7 +97,7 @@ app.use((err, req, res, next)=>{
   res.status(500).json({statusCode:res.statusCode, errMessage:err.message});
 });
 
-app.use('/', express.static(path.join(__dirname, 'public')));
+// app.use('/', express.static(path.join(__dirname, 'public')));
 
 app.use(express.json({
   limit: '50mb' //최대 50메가
@@ -91,11 +105,11 @@ app.use(express.json({
 
 
 
-app.use('/search', searchRoute);
+
+app.use('/myFaivoriteMovie', myFaivoriteMovieRoute);
 // customer 라우트를 추가하고 기본 경로로 /customer 사용
 app.use('/myInfo', myInfoRoute);
 // product 라우트를 추가하고 기본경로로 /product 사용
-
 
 // const server = http.createServer((req,res)=>{
 //   const path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase()
