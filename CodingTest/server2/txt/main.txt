@@ -1,0 +1,6 @@
+<div id="root">hello</div>
+
+<form name = "file" action = "/" id = "form" method = "post">
+  <input type = "text" name = "text" id = "input">
+  <input type = "submit" value = "출력">
+</form>
