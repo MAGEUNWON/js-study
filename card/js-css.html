@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #root{
+      width: 100vw;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="root">
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+    <section></section>
+
+    <button id = "trigger">click here!</button>
+
+  </div>
+
+  <script>
+    console.dir(document.body.children[0]);
+    const root = document.getElementById('root');
+    let div = document.querySelector('div');
+    console.log(div);
+    const sections = document.querySelectorAll('#root>section');
+    console.log(sections);
+    const trigger = document.getElementById('trigger');
+    console.log(trigger);
+
+    let colorSet = ["blue", "orange", "pink", "violet","skyblue", "green"];
+
+    trigger.addEventListener('click', function(){
+      for(let i = 0; i<sections.length; i++){
+        sections[i].style.width= "100vw";
+        sections[i].style.height = "100vh";
+        sections[i].style.backgroundColor = colorSet[i];
+      }
+      trigger.style.display ="none";
+      
+        
+      
+    });
+
+  </script>
+</body>
+</html>

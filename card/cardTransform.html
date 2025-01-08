@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{margin: 0; padding: 0; box-sizing: border-box; list-style: none;}
+
+    body{
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #drawer{
+      width: 300px;
+      height: 500px;
+      perspective: 800px;
+      position:relative;
+    }
+
+    #card{
+      width:100%;
+      height:100%;
+      position: absolute;
+      transition: transform 1s;
+      /* transform-style: preserve-3d; */
+      cursor: pointer;
+      
+
+    }
+
+    #front{
+      width: 100%;
+      height: 100%;
+      background-color: rgb(43, 42, 42);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      backface-visibility:hidden;
+      position: absolute;
+      
+      
+    }
+
+    #front>div{
+      width: 50px;
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 10px;
+      margin-left:13rem;
+    }
+
+    #front>div>div{
+      width: 50px;
+      height: 8px;
+      background-color: gainsboro;
+      border-radius: 3px;
+    }
+
+    #back{
+      width: 100%;
+      height: 100%;
+      background-color: darkgray;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      backface-visibility:hidden;
+      position:absolute;
+      transform: rotateY(180deg);
+      /* z-index: -1; */
+    }
+
+    #back>div:nth-child(1){
+      width: 10%;
+      height: 100%;
+      background-color: rgb(43, 42, 42);
+
+    }
+
+    #back>div:nth-child(2){
+      width: 90%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: darkgray;
+    }
+
+    #back>div:nth-child(2)>ul{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+    }
+
+    #back>div:nth-child(2)>ul>li{
+      color: rgb(248, 246, 246);
+      font-size: 1.5rem;
+    }
+
+    
+
+
+  </style>
+</head>
+<body>
+
+  <div id = "drawer">
+
+    <div id = "card">
+
+      <div id = "front">
+        <div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+  
+      <div id = "back">
+  
+        <div></div>
+  
+        <div>
+          <ul>
+            <li>menu</li>
+            <li>menu</li>
+            <li>menu</li>
+            <li>menu</li>
+            <li>menu</li>
+            <li>menu</li>
+            <li>menu</li>
+            <li>menu</li>
+          </ul>
+  
+          <div>
+            <div></div>
+            <div></div>
+          </div>
+  
+        </div>
+        
+  
+        
+  
+      </div>
+
+    </div>
+
+    
+
+  </div>
+
+<script>
+  let body = document.body;
+  console.log(body);
+
+  let drawer = document.getElementById("drawer");
+  console.log(drawer);
+
+  let card = document.getElementById("card");
+  console.log(card);
+
+  let front = document.getElementById("front");
+  console.log(front);
+
+  let back = document.getElementById("back");
+  console.log(back);
+
+  let menu = document.querySelectorAll("#back">"ul">"li");
+  console.log(menu);
+
+  let isClick = true;
+  console.log(isClick);
+  
+
+  drawer.addEventListener('click', function(){    
+    if(isClick ===true){
+      isClick = false;
+      console.log(isClick);
+
+      card.style.transformStyle = "preserve-3d";
+      card.style.transform = "rotateY(180deg)";
+      card.style.transition = "1s";
+
+      // 앞면 뒷면이 아니라 card에다 회전 주면 전체 돌아가는 거였음. 앞 뒤에 주면 각자 돌아가서 전체가 안돌아가고 따로 놈. 
+
+      // front.style.transform = "rotateY(180deg)";
+      // back.style.transform = "rotateY(0deg)";
+      // back.style.backfaceVisibility = "hidden";
+    } else{
+      isClick = true;
+      console.log(isClick);
+
+      card.style.transformStyle = "preserve-3d";
+      card.style.transform = "rotateY(0)";
+      card.style.transition = "1s";
+      // front.style.transform = "rotateY(90deg)";
+      // back.style.transform = "rotateY(180deg)";
+      front.style.backfaceVisibility = "visible";
+
+    }
+    
+  })
+
+</script>
+</body>
+</html>
