@@ -1,0 +1,101 @@
+*{margin:0; padding:0; box-sizing: border-box;}
+
+*{transition:1s;}
+// 반응형 크기 변할 때 효과 줌 
+
+$col-1:rgb(187, 183, 183);
+
+
+@mixin felx-setting($justify, $align, $direction:row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+@mixin size($width, $height){
+  width: $width;
+  height: $height;
+}
+
+
+#root{
+  @include felx-setting(center,center,column);
+  @include size(100vw, 100vh);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  // 가로, 세로 스크롤 없애줌.
+
+  &>div:nth-child(1){
+    @include size(100vw, 50vh);
+    background-image: url(./iceland-g502e8311b_1920.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+
+  &>div:nth-child(2){
+    @include felx-setting(flex-start,flex-start,column);
+    @include size(100vw, 50vh);
+  }
+
+  // mobile
+
+  @media(max-width: 768px){
+
+  }
+
+  // tablet
+  @media(min-width:769px) and (max-width:1024px){
+    &>div:nth-child(1){
+      @include size(90vw, 50vh);
+    }
+
+    &>div:nth-child(2){
+      @include size(90vw, 50vh);
+    }
+  }
+  
+  // desktop
+  @media(min-width:1025px){
+    
+    // media 안에 id는 안들어감. 못쓰는 것 같음. 
+    
+      &>div:nth-child(1){
+        @include size(100vw, 100vh);
+        position: relative;
+      }
+
+      &>div:nth-child(2){
+        position: absolute;
+        top:25%;
+        left:30%;
+        @include felx-setting(center,flex-start);
+        @include size(70vw,50vh);
+        
+
+          &>h1{
+            font-size: 3rem;
+            border-right: 3px solid black;
+            height: 3.8em;
+            padding-right:1%;
+          }
+
+          &>p{
+            width: 50vw;
+            font-size: 0.5rem;
+            padding-left:1% 
+          }
+          
+          p:hover{
+            font-size: 1.5rem;
+          }
+          // 마우스 올리면 효과 생김(글씨크기 크게 함)
+      }
+
+    }
+  
+  
+
+}
+
