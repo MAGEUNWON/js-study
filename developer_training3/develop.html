@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id = "root"></div>
+  <script type ="module">
+
+    const tagFunction = {
+
+      tagMaker : function(parent, tagName, html){
+      const tag = document.createElement(tagName);
+      tag.innerHTML = html;
+      parent.appendChild(tag);
+      },
+    // tagMaker로 root>header>nav 넣어줌
+      
+      solTagMaker: function(parent, itemName){
+        let itemTag = document.createElement(itemName);
+        parent.appendChild(itemTag);
+      },
+
+      listMaker : function(parentElement, itemName, itemcount){
+          for(let i = 0; i<itemcount; i++){ 
+          let itemTag = document.createElement(itemName);
+          // liTag.textContent = i + 1;
+          parentElement.appendChild(itemTag);
+          }
+      }
+      // listMaker로 ul>li*6개 넣어줌
+  }
+
+// tagFunction이라는 객체안에 tagMaker, listMaker 두개의 함수가 담겨있음
+// 이 객체는 import로 novel파일 데이터 온 뒤 export 해서 쓸 수 있음
+
+
+
+
+
+    const root = document.getElementById('root');
+    tagFunction.tagMaker(root, "header", "<nav></nav>");
+    // root>header>nav
+
+    const header = document.querySelector("header");
+    console.log(header);
+    tagFunction.solTagMaker(header, "hr");
+    // root>header>nav, hr
+
+    const nav = document.querySelector("nav")
+    tagFunction.solTagMaker(nav, "ul");
+    // root>header>nav>ul
+
+    const ul = document.querySelector("ul");
+    tagFunction.listMaker(ul, "il", 6);
+
+    // tagFunction.listMaker(nav, "ul", "li", 6);
+    // root>header>nav, hr>ul>li*6
+
+    const lis = document.querySelectorAll("li");
+
+    tagFunction.solTagMaker(root, "main");
+
+    const main = document.querySelector("main");
+    tagFunction.listMaker(main, "section", 3);
+    // root>header, main>section*3
+
+
+    const divSection = document.querySelector("main>section:nth-child(1)");
+    tagFunction.listMaker(divSection, "div", 3);
+    // main>section:nth-child(1)>div*3
+
+    const div1 = document.querySelector("section:nth-child(1)>div:nth-child(1)");
+    tagFunction.solTagMaker(div1, "img");
+    const img = document.querySelector("section:nth-child(1)>div:nth-child(1)");
+    tagFunction.solTagMaker(div1, "h1" );
+
+    tagFunction.listMaker(div1, "div", 2);
+
+    const dpDiv = document.querySelector("section:nth-child(1)>div:nth-child(1)>div:nth-child(3)");
+    // console.log(dpDiv);
+    tagFunction.solTagMaker(dpDiv, "div");
+    tagFunction.solTagMaker(dpDiv, "span");
+
+    const dpDiv2 = document.querySelector("section:nth-child(1)>div:nth-child(1)>div:nth-child(4)");
+    // console.log(dpDiv);
+    tagFunction.solTagMaker(dpDiv2, "div");
+    tagFunction.solTagMaker(dpDiv2, "span");
+  
+
+    const divSection3 = document.querySelector("main>section:nth-child(3)");
+    // console.log(divSection3);
+    tagFunction.solTagMaker(divSection3, "p");
+    tagFunction.solTagMaker(divSection3, "div");
+
+    const eventDiv = document.querySelector("section:nth-child(3)>div");
+    
+
+  </script>
+</body>
+</html>
