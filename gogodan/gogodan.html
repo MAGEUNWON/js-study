@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type ="module" src = './main.js'></script>
+</head>
+<body>
+  <div id ="root"></div>
+
+
+  <!-- <script>
+    const root = document.getElementById('root');
+    const ul = document.createElement('ul');
+    root.appendChild(ul);
+    
+    const arr = [];
+    let count = 0;
+    let count2 = 0;
+
+    function gogodan(num, num2){
+      for(let j=2; j<num; j++){
+        console.log(j+"단");
+        for(let i = 1; i<num2; i++){
+          count2++  
+          // 곱셈 몇번 했는지 count 함
+          let gogodanValue = `${j}x${i} = ${j*i}`
+          arr.push(gogodanValue);
+          console.log(arr);
+          let multiplyCounter = count2;
+          console.log(multiplyCounter);
+        };
+      }
+    }
+    gogodan(10, 10);
+        
+
+
+
+    let listMaker = function(arr, parentElemnt, childElement){
+      for(let i = 0; i<arr.length; i++){
+        let item = document.createElement(childElement);
+        parentElemnt.appendChild(item);
+        count+=100
+
+        setInterval(function(){
+          item.textContent = arr[i];
+        },count);
+      }
+    }
+    listMaker(arr,ul, "li");
+
+    
+  </script> -->
+</body>
+</html>
+
